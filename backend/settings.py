@@ -134,6 +134,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static')
 ]
 
+# will save media file to this destination
 MEDIA_ROOT = os.path.join(BASE_DIR, 'src/components/media')
 
 # Default primary key field type
