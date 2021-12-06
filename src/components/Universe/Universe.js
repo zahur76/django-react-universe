@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col'
 
 function Universe() {
     const [data, setData] = useState(null);
+    const [media, setMedia] = useState('media/')
 
     useEffect(() => {
         fetch("/universe").then((res) => res.json())
@@ -21,13 +22,13 @@ function Universe() {
                 <Col>{element.description}</Col>
                 <Col>{element.galaxy__name}</Col>
                 <Col>{element.system__name}</Col>
-                <img src='/media/edge2.jpg' />
+                <img src={media + element.image}/>
             </Row>
         )
     
     return (
         <div className="Planets">
-            <h1>Universe</h1>
+            <h1 className="text-dan">Universe</h1>
             {listRequest}            
         </div>
     );
