@@ -1,10 +1,14 @@
 from django.shortcuts import HttpResponse
+from django.core.serializers import serialize
+from .models import Galaxy 
 
 
 # Create your views here.
 def home(request):
-    ''' View to return all Todo objects'''
+    ''' View to return all Galaxy objects'''    
+    print('it working')
+    data = serialize('json', Galaxy.objects.all().order_by('id'))
 
-    print('working')
-
-    return HttpResponse(status=200)
+    return HttpResponse(data,
+                content_type='application/json')
+    

@@ -14,20 +14,19 @@ function Universe() {
         });        
     }, [])
 
-    const listRequest = () => {
-        (data || []).map(element=>{
-            <Row key={element.id}>
-                <Col>{element.name}</Col>
-                <Col>{element.age}</Col>
-                <Col>{element.constellation}</Col>
-                <Col>{element.image}</Col>
+    const listRequest = (data || []).map((element)=>
+            <Row key={element.fields.id}>
+                <Col>{element.fields.name}</Col>
+                <Col>{element.fields.age}</Col>
+                <Col>{element.fields.constellation}</Col>
+                <img src='/media/edge2.jpg' />
             </Row>
-        })
-    }
+        )
+    
     return (
-        <div className="Header">
+        <div className="Planets">
             <h1>Universe</h1>
-            {listRequest}
+            {listRequest}            
         </div>
     );
     }
