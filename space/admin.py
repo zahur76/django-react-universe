@@ -9,7 +9,7 @@ class SystemAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
 
 class PlanetAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
+    list_display = ('id', 'name', 'galaxy', 'system')
 
 # Register your models here.
 admin.site.register(Galaxy, GalaxyAdmin)

@@ -15,10 +15,12 @@ function Universe() {
     }, [])
 
     const listRequest = (data || []).map((element)=>
-            <Row key={element.fields.id}>
-                <Col>{element.fields.name}</Col>
-                <Col>{element.fields.age}</Col>
-                <Col>{element.fields.description}</Col>
+            <Row key={element.id}>                
+                <Col>{element.name}</Col>
+                <Col>{element.age}</Col>
+                <Col>{element.description}</Col>
+                <Col>{element.galaxy__name}</Col>
+                <Col>{element.system__name}</Col>
                 <img src='/media/edge2.jpg' />
             </Row>
         )

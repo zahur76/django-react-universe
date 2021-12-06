@@ -4,7 +4,6 @@ class Galaxy(models.Model):
 
     class Meta:
         verbose_name_plural = "Galaxy"
-
     
     name = models.CharField(max_length=254)
     age = models.CharField(max_length=254)
@@ -32,7 +31,7 @@ class System(models.Model):
 class Planet(models.Model):
 
     class Meta:
-        verbose_name_plural = "Pystem"
+        verbose_name_plural = "Planet"
     
     galaxy = models.ForeignKey(
             'Galaxy', null=False, blank=False, on_delete=models.CASCADE,
