@@ -18,7 +18,7 @@ function Universe() {
             <Row key={element.fields.id}>
                 <Col>{element.fields.name}</Col>
                 <Col>{element.fields.age}</Col>
-                <Col>{element.fields.constellation}</Col>
+                <Col>{element.fields.description}</Col>
                 <img src='/media/edge2.jpg' />
             </Row>
         )
