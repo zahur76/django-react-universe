@@ -6,4 +6,4 @@ class GalaxyAdmin(admin.ModelAdmin):
 
 # Register your models here.
 
-admin.site.register(Galaxy), GalaxyAdmin)
+admin.site.register(Galaxy, GalaxyAdmin)

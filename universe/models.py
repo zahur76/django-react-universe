@@ -5,7 +5,7 @@ from django.db import models
 class Galaxy(models.Model):
 
     class Meta:
-        verbose_name_plural = "Universe"
+        verbose_name_plural = "Galaxy"
 
     name = models.CharField(max_length=120)
     age = models.CharField(max_length=120)
