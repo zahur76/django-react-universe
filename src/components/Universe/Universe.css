@@ -2,3 +2,6 @@ img {
     width: 200px !important;
 }
 
+.image {
+    background-image: url('../media/logo192.png');
+}
