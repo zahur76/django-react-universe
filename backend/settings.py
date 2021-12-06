@@ -141,7 +141,7 @@ STATIC_URL = '/static/'
 
 # other location for static files used by django not in /static/. Will also be used by collectstatic
 STATICFILES_DIRS = [
-        os.path.join(BASE_DIR/'build')]
+        os.path.join(BASE_DIR/'build/static')]
 
 # used for testing collectstatic in development
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
