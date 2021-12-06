@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',    
     'space',
+
+    'storages', # for s3 storage
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
