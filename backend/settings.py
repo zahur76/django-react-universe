@@ -140,16 +140,15 @@ STATIC_URL = '/static/'
 # MEDIA_URL = '/media/'
 
 # other location for static files used by django not in /static/. Will also be used by collectstatic
-# if 'DEVELOPMENT' in os.environ:
-#     STATICFILES_DIRS = [
-#         os.path.join(BASE_DIR/'build/static')
-#     ]
-# else:
-#     STATICFILES_DIRS = [
-#         os.path.join(BASE_DIR/'build')
-#     ]
-STATICFILES_DIRS = [
-        os.path.join(BASE_DIR/'build/static')]
+if 'DEVELOPMENT' in os.environ:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR/'build/static')
+    ]
+else:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR/'build')
+    ]
+
 
 # used for testing collectstatic in development
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
