@@ -4,9 +4,13 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 
-function Universe() {
+function Universe(props) {
     const [data, setData] = useState(null);
     const [media, setMedia] = useState(null)
+    const[term, searchTerm]=useState(props.newTerm);
+
+
+    console.log(props.newTerm)
 
     useEffect(() => {
         process.env.NODE_ENV==='development' ? setMedia('media/') : setMedia('https://django-react-universe.s3.amazonaws.com/static/') 
