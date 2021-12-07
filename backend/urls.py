@@ -18,10 +18,13 @@ from django.conf import settings
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
+import os
+if os.path.exists("env.py"):
+    import env
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('universe', include('space.urls')),
 ]
-
-urlpatterns += [re_path('.*', TemplateView.as_view(template_name='index.html'))]
+if 'DEVELOPMENT' in os.environ:
+    urlpatterns += [re_path('.*', TemplateView.as_view(template_name='index.html'))]
