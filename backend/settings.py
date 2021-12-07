@@ -138,14 +138,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 
 # other location for static files used by django not in /static/. Will also be used by collectstatic
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR/'build/static'), os.path.join(BASE_DIR/'build/media')]
 
 # used for testing collectstatic in development
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # will save media file to this destination/which is also used by react
 MEDIA_ROOT = os.path.join(BASE_DIR, 'public/media')

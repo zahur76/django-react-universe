@@ -6,8 +6,12 @@ import Col from 'react-bootstrap/Col'
 
 function Universe() {
     const [data, setData] = useState(null);
-    const [media, setMedia] = useState('media/')
+    const [media, setMedia] = useState(null)
 
+    useEffect(() => {
+        process.env.NODE_ENV==='development' ? setMedia('media/') : setMedia('https://django-react-universe.s3.amazonaws.com/static/') 
+    }, [])
+    
     useEffect(() => {
         fetch("/universe").then((res) => res.json())
         .then((data) => setData(data)).catch((error) => {
