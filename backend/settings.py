@@ -140,7 +140,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # MEDIA_URL = '/media/'
 
-# other location for static files used by django not in /static/. Will also be used by collectstatic
+# other location for static files used by django not tied up to app. Will also be used by collectstatic
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR/'build/static'), os.path.join(BASE_DIR/'build/media')]
 
