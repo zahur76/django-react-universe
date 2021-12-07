@@ -20,7 +20,7 @@ function Universe() {
     }, [])
 
     const listRequest = (data || []).map((element)=>
-            <Row key={element.id}>                
+            <Row className="m-0" key={element.id}>                
                 <Col>{element.name}</Col>
                 <Col>{element.age}</Col>
                 <Col>{element.description}</Col>
