@@ -6,6 +6,29 @@ a {
     font-size: 20px;
 }
 
+.logo {
+    background-image: url('../media/universe.png');
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 75px;
+}
+
+.header-text {
+    color: rgba(0, 68, 255, 0.7);
+    font-weight: 900;
+}
+
+.search-bar {
+    position: absolute;
+    left: 12.5%;
+    border: 20px rgba(0, 0, 0, 0.4) solid;
+}
+
+.input-bar {
+    margin: 0 !important;
+}
+
 @media screen and (max-width: 576px){
     .fas {
         font-size: 16px;

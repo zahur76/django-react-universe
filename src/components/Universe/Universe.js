@@ -31,7 +31,7 @@ function Universe() {
         )
     
     return (
-        <div className="Planets mt-3">            
+        <div className="Planets mt-5">            
             {listRequest}            
         </div>
     );
