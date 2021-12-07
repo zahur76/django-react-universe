@@ -1,3 +1,13 @@
 a {
     text-decoration: none;
 }
+
+.fas {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 576px){
+    .fas {
+        font-size: 16px;
+    }
+}

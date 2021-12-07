@@ -20,7 +20,7 @@ function Universe() {
     }, [])
 
     const listRequest = (data || []).map((element)=>
-            <Row className="m-0" key={element.id}>                
+            <Row className="m-0 text-light" key={element.id}>                
                 <Col>{element.name}</Col>
                 <Col>{element.age}</Col>
                 <Col>{element.description}</Col>
@@ -31,8 +31,7 @@ function Universe() {
         )
     
     return (
-        <div className="Planets">
-            <h1 className="text-dan">Universe</h1>
+        <div className="Planets mt-3">            
             {listRequest}            
         </div>
     );
