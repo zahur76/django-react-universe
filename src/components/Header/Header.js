@@ -14,38 +14,61 @@ function Header(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    // Login
+    const [username, setUsername] = useState(null);
+    const [password, setPassword] = useState(null);
+    const [login, setLogin] = useState(localStorage.getItem("login"));
+
     const handleSearchStatus = () => {
         {search ? searchBar(false) : searchBar(true)}
         props.onSearch(search)
-    }   
+    }
+    
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value)              
+    }
 
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value)
+                
+    }
+    
+    const handleLoginSubmit = (e) => {
+        console.log(username)
+        console.log(password)
+        e.preventDefault()
+        let data = {'username': username, 'password': password}       
+        fetch("/universe/login", {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify(data)}).then((res) => res.json())
+        .then((data) => localStorage.setItem("login", data.login)).then(() => { 
+            setLogin(localStorage.getItem("login"))
+        });
+        setShow(false);                             
+    }
+    console.log(login)
     return (
         <div className="Header">
             <Row className="text-center m-0">
-            <Col className="logo" xs={2} md={2} lg={2}></Col>                               
-            <Col className="h1 my-auto text-start header-text" xs={5} md={6} lg={6}>Our Universe</Col>                
-            <Col className="text-light my-auto h6 text-end" xs={5} md={4} lg={4}>
-                <a  onClick={handleSearchStatus} className="p-3 text-light" href="#">
-                    {search ? <i class="fas fa-search"></i> : <i class="fas fa-search-minus"></i> }
-                </a>
-                <a onClick={handleShow} className="text-light p-2" href="#"><i class="fas fa-user"></i></a>
-            </Col>
+                <Col className="logo" xs={2} md={2} lg={2}></Col>                               
+                <Col className="h1 my-auto text-start header-text" xs={5} md={6} lg={6}>Our Universe</Col>                
+                <Col className="text-light my-auto h6 text-end" xs={5} md={4} lg={4}>                
+                    <a  onClick={handleSearchStatus} className="p-2 text-light" href="#">
+                        {search ? <i class="fas fa-search"></i> : <i class="fas fa-search-minus"></i> }
+                    </a>
+                    {login ? <a href="#" className="text-light p-2"><i class="fas text-success fa-user"></i></a> : <a onClick={handleShow} className="text-light p-2" href="#"><i class="fas fa-user"></i></a>}
+                    {login ? <div className="text-light admin p-2"><i class="fas fa-sign-out-alt"></i></div> : <div></div>}
+                </Col>            
             </Row>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header className="m-0 p-2" closeButton>
                     <Modal.Title>Admin Login</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form className="w-75 mx-auto login-form">     
-                        <input className="col-12 m-1" type="text" placeholder="Username" required/>
-                        <input className="col-12 m-1" type="password" placeholder="Password" required/>             
+                    <form className="w-75 mx-auto login-form" onSubmit={handleLoginSubmit}>     
+                        <input className="col-12 m-1" username={username} onChange={handleUsernameChange}  type="text" placeholder="Username" required/>
+                        <input className="col-12 m-1" password={password} onChange={handlePasswordChange} type="password" placeholder="Password" required/>             
+                        <input className="col-12 btn submit-button text-light mt-2" type="submit" value="Submit" />  
                     </form>
-                </Modal.Body>
-                <Modal.Footer className="p-2">                    
-                    <Button className="bg-dark border-light" variant="primary" onClick={handleClose}>
-                        Login
-                    </Button>
-                </Modal.Footer>
+                </Modal.Body>                
             </Modal>            
         </div>
         
