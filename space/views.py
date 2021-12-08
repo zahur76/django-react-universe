@@ -23,7 +23,7 @@ def home(request):
 @csrf_exempt
 def login(request):
     ''' View to authenticate login'''
-    print('this is login view')
+    
     if request.method == 'POST':
         data = json.loads(request.body)
         username = data['username']
@@ -36,4 +36,12 @@ def login(request):
         data = {'login': False}
         return HttpResponse(json.dumps(data),
                     content_type='application/json')
+
+def logout(request):
+    ''' View to authenticate login'''
+    print('im here')
+    data = {'login': False}
+
+    return HttpResponse(json.dumps(data),
+                content_type='application/json')
     

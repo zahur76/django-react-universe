@@ -44,7 +44,17 @@ function Header(props) {
         });
         setShow(false);                             
     }
+
+    const handleLogout = (e) => {
+        console.log('sssss')
+        e.preventDefault()               
+        fetch("/universe/logout").then((res) => res.json())
+        .then((data) => [localStorage.setItem("login", data.login)]).then(() => {            
+            setLogin(localStorage.getItem("login"))
+        });                             
+    }
     console.log(login)
+    
     return (
         <div className="Header">
             <Row className="text-center m-0">
@@ -54,8 +64,8 @@ function Header(props) {
                     <a  onClick={handleSearchStatus} className="p-2 text-light" href="#">
                         {search ? <i class="fas fa-search"></i> : <i class="fas fa-search-minus"></i> }
                     </a>
-                    {login ? <a href="#" className="text-light p-2"><i class="fas text-success fa-user"></i></a> : <a onClick={handleShow} className="text-light p-2" href="#"><i class="fas fa-user"></i></a>}
-                    {login ? <div className="text-light admin p-2"><i class="fas fa-sign-out-alt"></i></div> : <div></div>}
+                    {login==='true' ? <a href="#" className="text-light p-2"><i class="fas text-success fa-user"></i></a> : <a onClick={handleShow} className="text-light p-2" href="#"><i class="fas fa-user"></i></a>}
+                    {login==='true' ? <div onClick={handleLogout} className="text-light admin p-2 btn"><i class="fas fa-sign-out-alt"></i></div> : <div></div>}
                 </Col>            
             </Row>
             <Modal show={show} onHide={handleClose}>
