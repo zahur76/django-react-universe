@@ -8,7 +8,7 @@ function Universe(props) {
     const [data, setData] = useState(null);
     const [search, setSearch] = useState(null);
     const [media, setMedia] = useState(null)
-    const [planet, planetView] = useState(false)
+    const [planet, planetView] = useState(true)
 
     const handleSearchTerm = (event) => {
         let allItems  = search        
@@ -56,21 +56,22 @@ function Universe(props) {
     }
 
     const compactView = (data || []).map((element)=>            
-                <Col className="m-0 text-light" key={element.id} xs={6} md={4} lg={3}>
-                        <img src={media + element.image}/>                                        
-                        <div>{element.name}</div>
-                        <div>{element.age}</div>
-                        <div>{element.description}</div>
-                        <div>{element.galaxy__name}</div>
-                        <div>{element.system__name}</div>                        
+                <Col className="text-light mb-2" key={element.id} xs={12} sm={6} md={4} lg={3}>
+                        <img src={media + element.image}/>
+                        <div className="details-background">                                        
+                            <div>{element.name}</div>
+                            <div>{element.age}</div>                            
+                            <div>{element.galaxy__name}</div>
+                            <div>{element.system__name}</div>
+                        </div>                        
                 </Col>         
         )
     
     const detailView = (data || []).map((element)=>            
-            <Col className="m-0 text-light" key={element.id} xs={12}>
-                    <Row className="container">
-                        <img className="col-3" src={media + element.image}/>
-                        <Col xs={9}>                                        
+            <Col className="mt-2 text-light" key={element.id} xs={12}>
+                    <Row className="details-background mx-auto">
+                        <img className="col-xs-12 col-sm-4 col-md-3" src={media + element.image}/>
+                        <Col xs={12} sm={8} md={9}>                                        
                             <div>{element.name}</div>
                             <div>{element.age}</div>
                             <div>{element.description}</div>
@@ -84,9 +85,9 @@ function Universe(props) {
     return (
         <div>
             {statusBar(props.searchStatus)}
-            <Col onClick={handleChangeView} xs={12} className="text-white text-end btn">list</Col>
+            <Col onClick={handleChangeView} xs={12} className="text-white text-end btn">{planet ? <i class="fas fa-list"></i> : <i class="fas fa-th"></i>}</Col>
             <div className="Planets mt-5">
-                <Row className="m-0">           
+                <Row className="m-0 p-2">           
                     {handlePlanetView()}
                 </Row>            
             </div>
