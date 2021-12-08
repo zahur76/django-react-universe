@@ -9,13 +9,26 @@ function Universe(props) {
     const [search, setSearch] = useState(null);
     const [media, setMedia] = useState(null)
 
-    
+
+    const handleSearchTerm = (event) => {
+        let allItems  = search        
+        let term = event.target.value        
+        let newList = []    
+        allItems.map(element=>{        
+            if(((element.name).toLowerCase()).includes(term.toLowerCase())){
+                newList.push(element)          
+                           
+            }                                                 
+        })
+        setData(newList)
+    }
+
     const statusBar = (status) => {
                 console.log(status)
                 return <div>
                         {status ? <div className="search-bar w-75">
                             <form>     
-                                <input className="input-bar col-12 m-1" type="text" placeholder="Search planet" required/>
+                                <input onChange={handleSearchTerm} className="input-bar col-12 m-1" type="text" placeholder="Search planet" required/>
                             </form></div> : <div></div>}
                          </div>
     }
