@@ -6,11 +6,19 @@ import Col from 'react-bootstrap/Col'
 
 function Universe(props) {
     const [data, setData] = useState(null);
+    const [search, setSearch] = useState(null);
     const [media, setMedia] = useState(null)
-    const[term, searchTerm]=useState(props.newTerm);
 
-
-    console.log(props.newTerm)
+    
+    const statusBar = (status) => {
+                console.log(status)
+                return <div>
+                        {status ? <div className="search-bar w-75">
+                            <form>     
+                                <input className="input-bar col-12 m-1" type="text" placeholder="Search planet" required/>
+                            </form></div> : <div></div>}
+                         </div>
+    }
 
     useEffect(() => {
         process.env.NODE_ENV==='development' ? setMedia('media/') : setMedia('https://django-react-universe.s3.amazonaws.com/static/') 
@@ -18,7 +26,7 @@ function Universe(props) {
     
     useEffect(() => {
         fetch("/universe").then((res) => res.json())
-        .then((data) => setData(data)).catch((error) => {
+        .then((data) => [setData(data), setSearch(data)]).catch((error) => {
             console.log(error);
         });        
     }, [])
@@ -35,8 +43,11 @@ function Universe(props) {
         )
     
     return (
-        <div className="Planets mt-5">            
-            {listRequest}            
+        <div>
+            {statusBar(props.searchStatus)}
+            <div className="Planets mt-5">           
+                {listRequest}            
+            </div>
         </div>
     );
     }

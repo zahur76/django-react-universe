@@ -4,15 +4,16 @@ import Header from '../Header/Header'
 import Universe from '../Universe/Universe';
 
 function App() {
-  const[term, searchTerm]=useState(null);
-  
-  function onSubmit(term) {
-    searchTerm(term)
+  const[search, searchStatus]=useState(null);
+
+  function onSearch(search) {
+    searchStatus(search)
   }
+
   return (
     <div className="App">
-      <Header onSubmit={onSubmit}/>
-      <Universe newTerm={term}/>
+      <Header onSearch={onSearch}/>
+      <Universe searchStatus={search}/>
     </div>
   );
 }
