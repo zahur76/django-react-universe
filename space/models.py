@@ -19,7 +19,7 @@ class System(models.Model):
     class Meta:
         verbose_name_plural = "System"
     
-    name = models.CharField(max_length=254)
+    name = models.CharField(max_length=254)    
     age = models.CharField(max_length=254)
     description = models.CharField(max_length=254)
     image = models.ImageField()
@@ -40,6 +40,8 @@ class Planet(models.Model):
             'System', null=False, blank=False, on_delete=models.CASCADE,
             related_name='system')
     name = models.CharField(max_length=254)
+    nickname = models.CharField(max_length=254, default="planet")
+    surface_area = models.IntegerField(default=999)
     age = models.CharField(max_length=254)
     description = models.CharField(max_length=254)
     image = models.ImageField()

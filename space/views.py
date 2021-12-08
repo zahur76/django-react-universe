@@ -10,7 +10,7 @@ def home(request):
     all_planets = []   
     print('it working')
     all_data = Planet.objects.values('id',
-        'galaxy__name', 'system__name', 'name', 'age', 'description','image')
+        'galaxy__name', 'system__name', 'name', 'age', 'description','image', 'nickname', 'surface_area')
     print(all_data)
     for data in all_data:
         all_planets.append(data)

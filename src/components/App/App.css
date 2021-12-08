@@ -1,6 +1,8 @@
 html, body, #root, .App {  
   height: 100%;
-  background:url('../media/death.jpeg') 
+  background:url('../media/death.jpeg') center center;
+  background-size: cover;
+   
 }
 
 .App {

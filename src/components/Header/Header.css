@@ -21,9 +21,10 @@ a {
 
 .search-bar {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 1);
     padding: 20px;
-    left: 12.5%;    
+    left: 12.5%;
+    border: 1px solid rgb(0, 132, 255);    
 }
 
 .input-bar {

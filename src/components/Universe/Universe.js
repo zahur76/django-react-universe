@@ -58,9 +58,9 @@ function Universe(props) {
     const compactView = (data || []).map((element)=>            
                 <Col className="text-light mb-2" key={element.id} xs={12} sm={6} md={4} lg={3}>
                         <img src={media + element.image}/>
-                        <div className="details-background">                                        
-                            <div>{element.name}</div>
-                            <div>{element.age}</div>                            
+                        <div className="text-info">                                        
+                            <div className="h4">{element.name}</div>
+                            <div>{element.age} Billion Years</div>                            
                             <div>{element.galaxy__name}</div>
                             <div>{element.system__name}</div>
                         </div>                        
@@ -69,14 +69,15 @@ function Universe(props) {
     
     const detailView = (data || []).map((element)=>            
             <Col className="mt-2 text-light" key={element.id} xs={12}>
-                    <Row className="details-background mx-auto">
-                        <img className="col-xs-12 col-sm-4 col-md-3" src={media + element.image}/>
-                        <Col xs={12} sm={8} md={9}>                                        
-                            <div>{element.name}</div>
-                            <div>{element.age}</div>
-                            <div>{element.description}</div>
-                            <div>{element.galaxy__name}</div>
-                            <div>{element.system__name}</div>
+                    <Row className="mx-auto">
+                        <img className="col-xs-12 col-sm-4 col-md-3 col-lg-3 planet-image" src={media + element.image}/>
+                        <Col className="text-start mt-2 p-4 text-info h6" xs={12} sm={8} md={9} lg={9}>                                        
+                            <div className="h4 border-bottom border-info">{element.name}: {element.nickname}</div>
+                            <div className="p-1">Age: {element.age} Billion Years</div>
+                            <div className="p-1">Surface: {element.surface_area} Million Km2</div>
+                            <div className="p-1 description">{element.description}</div>
+                            <div className="p-1">Galaxy: <a href="#" className="milky-way border-bottom border-info text-info">{element.galaxy__name}</a></div>
+                            <div className="p-1">System: {element.system__name}</div>                            
                         </Col>
                     </Row>                        
             </Col>         
@@ -86,7 +87,7 @@ function Universe(props) {
         <div>
             {statusBar(props.searchStatus)}
             <Col onClick={handleChangeView} xs={12} className="text-white text-end btn">{planet ? <i class="fas fa-list"></i> : <i class="fas fa-th"></i>}</Col>
-            <div className="Planets mt-5">
+            <div className="Planets mt-2">
                 <Row className="m-0 p-2">           
                     {handlePlanetView()}
                 </Row>            
