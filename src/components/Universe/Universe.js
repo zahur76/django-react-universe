@@ -8,7 +8,7 @@ function Universe(props) {
     const [data, setData] = useState(null);
     const [search, setSearch] = useState(null);
     const [media, setMedia] = useState(null)
-
+    const [planet, planetView] = useState(false)
 
     const handleSearchTerm = (event) => {
         let allItems  = search        
@@ -23,8 +23,7 @@ function Universe(props) {
         setData(newList)
     }
 
-    const statusBar = (status) => {
-                console.log(status)
+    const statusBar = (status) => {                
                 return <div>
                         {status ? <div className="search-bar w-75">
                             <form>     
@@ -44,7 +43,19 @@ function Universe(props) {
         });        
     }, [])
 
-    const listRequest = (data || []).map((element)=>            
+
+    const handleChangeView = () => {
+        {planet ? planetView(false) : planetView(true)}
+    }
+
+    const handlePlanetView = () => {
+        if(planet){            
+            return compactView
+        }        
+        return detailView
+    }
+
+    const compactView = (data || []).map((element)=>            
                 <Col className="m-0 text-light" key={element.id} xs={6} md={4} lg={3}>
                         <img src={media + element.image}/>                                        
                         <div>{element.name}</div>
@@ -55,13 +66,28 @@ function Universe(props) {
                 </Col>         
         )
     
+    const detailView = (data || []).map((element)=>            
+            <Col className="m-0 text-light" key={element.id} xs={12}>
+                    <Row className="container">
+                        <img className="col-3" src={media + element.image}/>
+                        <Col xs={9}>                                        
+                            <div>{element.name}</div>
+                            <div>{element.age}</div>
+                            <div>{element.description}</div>
+                            <div>{element.galaxy__name}</div>
+                            <div>{element.system__name}</div>
+                        </Col>
+                    </Row>                        
+            </Col>         
+    )
+    
     return (
         <div>
             {statusBar(props.searchStatus)}
-            <Col xs={12} className="text-white">list</Col>
+            <Col onClick={handleChangeView} xs={12} className="text-white text-end btn">list</Col>
             <div className="Planets mt-5">
                 <Row className="m-0">           
-                    {listRequest}
+                    {handlePlanetView()}
                 </Row>            
             </div>
         </div>
