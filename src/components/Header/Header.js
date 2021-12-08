@@ -2,9 +2,16 @@ import { React, useState, useEffect} from "react";
 import './Header.css';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Modal from 'react-bootstrap/Modal'
+import Button from "react-bootstrap/Button";
 
 function Header(props) {
     const[search, searchBar]=useState(true);
+
+    // Modal
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const handleSearchStatus = () => {
         {search ? searchBar(false) : searchBar(true)}
@@ -20,10 +27,27 @@ function Header(props) {
                 <a  onClick={handleSearchStatus} className="p-3 text-light" href="#">
                     {search ? <i class="fas fa-search"></i> : <i class="fas fa-search-minus"></i> }
                 </a>
-                <a className="text-light p-2" href="#"><i class="fas fa-user"></i></a>
+                <a onClick={handleShow} className="text-light p-2" href="#"><i class="fas fa-user"></i></a>
             </Col>
-            </Row>            
+            </Row>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form className="w-75 mx-auto login-form">     
+                        <input className="col-12 m-1" type="text" placeholder="Username" required/>
+                        <input className="col-12 m-1" type="password" placeholder="Password" required/>             
+                    </form>
+                </Modal.Body>
+                <Modal.Footer>                    
+                    <Button variant="primary" onClick={handleClose}>
+                        Login
+                    </Button>
+                </Modal.Footer>
+            </Modal>            
         </div>
+        
     );
 }
 

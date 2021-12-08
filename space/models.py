@@ -43,7 +43,7 @@ class Planet(models.Model):
     nickname = models.CharField(max_length=254, default="planet")
     surface_area = models.IntegerField(default=999)
     age = models.CharField(max_length=254)
-    description = models.CharField(max_length=254)
+    description = models.CharField(max_length=1000)
     image = models.ImageField()
 
     def __str__(self):

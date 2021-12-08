@@ -86,7 +86,9 @@ function Universe(props) {
     return (
         <div>
             {statusBar(props.searchStatus)}
-            <Col onClick={handleChangeView} xs={12} className="text-white text-end btn">{planet ? <i class="fas fa-list"></i> : <i class="fas fa-th"></i>}</Col>
+            <div className="text-end">
+                <div onClick={handleChangeView} className="text-white btn p-3">{planet ? <i class="fas fa-list"></i> : <i class="fas fa-th"></i>}</div>
+            </div>
             <div className="Planets mt-2">
                 <Row className="m-0 p-2">           
                     {handlePlanetView()}
