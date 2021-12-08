@@ -6,6 +6,7 @@ img {
 
 input {
     background-color: lightgray;
+    border: 1px solid black;
 }
 
 .planet-image {
@@ -14,4 +15,15 @@ input {
 
 .milky-way:hover {
     color: rgb(190, 227, 250) !important;
+}
+
+@media screen and (max-width: 576px){
+    img {
+        width: 75%;
+    }
+
+    .planet-image {
+        width: 75% !important;
+        margin: 0 auto;
+    }
 }

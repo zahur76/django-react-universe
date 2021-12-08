@@ -32,11 +32,18 @@ a {
 }
 
 .modal {
-    top: 20%;
+    top: 20%;    
+}
+
+.modal-content {
+    color: white;
+    background-image: url('../media/planets.jpg');
+    background-size: cover;
+    opacity: 0.9;
 }
 
 .login-form input {
-    background: rgb(234, 238, 238);
+    background: rgb(246, 248, 248);
 }
 
 @media screen and (max-width: 576px){

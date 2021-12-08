@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Modal from 'react-bootstrap/Modal'
 import Button from "react-bootstrap/Button";
 
+
 function Header(props) {
     const[search, searchBar]=useState(true);
 
@@ -31,8 +32,8 @@ function Header(props) {
             </Col>
             </Row>
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Header className="m-0 p-2" closeButton>
+                    <Modal.Title>Admin Login</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form className="w-75 mx-auto login-form">     
@@ -40,8 +41,8 @@ function Header(props) {
                         <input className="col-12 m-1" type="password" placeholder="Password" required/>             
                     </form>
                 </Modal.Body>
-                <Modal.Footer>                    
-                    <Button variant="primary" onClick={handleClose}>
+                <Modal.Footer className="p-2">                    
+                    <Button className="bg-dark border-light" variant="primary" onClick={handleClose}>
                         Login
                     </Button>
                 </Modal.Footer>
