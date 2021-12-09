@@ -54,6 +54,10 @@ function Header(props) {
         fetch("/universe/logout").then((res) => res.json())
         .then((data) => [localStorage.setItem("login", data.login)]).then(() => {            
             setLogin(localStorage.getItem("login"))
+            {localStorage.getItem("login")==='false' ? flashMessages('Logged out!') : flashMessages(null)}
+            setTimeout(() => {
+                flashMessages(null)
+            }, 3000);
         });                             
     } 
 
