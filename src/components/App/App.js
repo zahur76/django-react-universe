@@ -19,10 +19,9 @@ function App() {
 
   return (
     <div className="App">
-      <Header onSearch={onSearch}/>
       <BrowserRouter>
         <Routes className="App">
-            <Route path="/" element={<Universe searchStatus={search}/>} />
+            <Route path="/" element={<div><Header onSearch={onSearch}/> <Universe searchStatus={search}/></div>} />
             <Route path="/admin" element={<Admin />} />                            
         </Routes> 
       </BrowserRouter>

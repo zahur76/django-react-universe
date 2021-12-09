@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/Modal'
 
 function Header(props) {
     const[search, searchBar]=useState(true);
+    const[admin, adminPage]=useState(true);
 
     // Modal
     const [show, setShow] = useState(false);
@@ -17,7 +18,7 @@ function Header(props) {
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
     const [login, setLogin] = useState(localStorage.getItem("login"));
-
+    
     // flash messages
     const [flash, flashMessages] = useState(null)
     
@@ -31,8 +32,7 @@ function Header(props) {
     }
 
     const handlePasswordChange = (event) => {
-        setPassword(event.target.value)
-                
+        setPassword(event.target.value)                
     }
     
     const handleLoginSubmit = (e) => {
@@ -59,8 +59,7 @@ function Header(props) {
                 flashMessages(null)
             }, 3000);
         });                             
-    } 
-
+    }
     
     return (        
         <div className="Header">
@@ -68,11 +67,13 @@ function Header(props) {
             <Row className="text-center m-0">
                 <Col className="logo" xs={2} md={2} lg={2}></Col>                               
                 <Col className="h1 my-auto text-start header-text" xs={5} md={6} lg={6}>Our Universe</Col>                
-                <Col className="text-light my-auto h6 text-end" xs={5} md={4} lg={4}>                
+                <Col className="text-light my-auto h6 text-end p-0 p-sm-2" xs={5} md={4} lg={4}>
+                    {admin ?
                     <a  onClick={handleSearchStatus} className="p-2 text-light" href="#">
-                        {search ? <i class="fas fa-search"></i> : <i class="fas fa-search-minus"></i> }
+                        {search ? <i class="fas fa-search"></i> : <i class="fas fa-search-minus"></i>}
                     </a>
-                    {login==='true' ? <a href="/admin" className="text-light p-2"><i class="fas text-success fa-user"></i></a> : <a onClick={handleShow} className="text-light p-2" href="#"><i class="fas fa-user"></i></a>}
+                    : <div></div>}                    
+                    {login==='true' ? <a href="/admin" className="p-2"><i class="fas text-success fa-user"></i></a> : <a onClick={handleShow} className="text-light p-2" href="#"><i class="fas fa-user"></i></a>}
                     {login==='true' ? <div onClick={handleLogout} className="text-light admin p-2 btn"><i class="fas fa-sign-out-alt"></i></div> : <div></div>}
                 </Col>            
             </Row>            
