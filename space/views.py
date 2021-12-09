@@ -39,9 +39,20 @@ def login(request):
 
 def logout(request):
     ''' View to authenticate login'''
-    print('im here')
     data = {'login': False}
 
     return HttpResponse(json.dumps(data),
                 content_type='application/json')
+
+
+@require_POST
+@csrf_exempt
+def add_planet(request):
+    ''' View to add planet'''
+    print('im here')
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print(data)
+
+    return HttpResponse(status=200)
     

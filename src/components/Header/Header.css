@@ -1,3 +1,7 @@
+img {
+    opacity: 0.6 !important;
+}
+
 a {
     text-decoration: none;
 }

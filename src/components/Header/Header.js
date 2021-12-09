@@ -85,7 +85,7 @@ function Header(props) {
                     <form className="w-75 mx-auto login-form" onSubmit={handleLoginSubmit}>     
                         <input className="col-12 m-1" username={username} onChange={handleUsernameChange}  type="text" placeholder="Username" required/>
                         <input className="col-12 m-1" password={password} onChange={handlePasswordChange} type="password" placeholder="Password" required/>             
-                        <input className="col-12 btn submit-button text-light mt-2" type="submit" value="Submit" />  
+                        <input className="col-12 btn submit-button text-light mt-2 border-light" type="submit" value="Submit" />  
                     </form>
                 </Modal.Body>                
             </Modal>            

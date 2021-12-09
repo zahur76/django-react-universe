@@ -1,0 +1,27 @@
+.image:hover {
+    opacity: 0.6;
+}
+
+.modal-content {
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+.modal {
+    top: 15%;
+}
+
+.form-select, .form-control {
+    margin: 5px;
+    border-radius: 0;
+}
+
+@media screen and (max-width: 576px){
+    .form-select, .form-control {
+        padding: 2px;
+    }
+    .modal-content {
+        width: 90%;
+        left: 5%;
+    }
+    
+}
