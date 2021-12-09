@@ -29,7 +29,7 @@ def login(request):
         username = data['username']
         password = data['password']
         user = authenticate(request, username=username, password=password)
-        if user is not None:            
+        if user is not None:
             data = {'login': True}
             return HttpResponse(json.dumps(data),
                     content_type='application/json')

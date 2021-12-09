@@ -1,9 +1,8 @@
-import { React, useState, useEffect} from "react";
+import { React, useState, useEffect } from "react";
 import './Header.css';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Modal from 'react-bootstrap/Modal'
-import Button from "react-bootstrap/Button";
 
 
 function Header(props) {
@@ -19,6 +18,9 @@ function Header(props) {
     const [password, setPassword] = useState(null);
     const [login, setLogin] = useState(localStorage.getItem("login"));
 
+    // flash messages
+    const [flash, flashMessages] = useState(null)
+    
     const handleSearchStatus = () => {
         {search ? searchBar(false) : searchBar(true)}
         props.onSearch(search)
@@ -34,29 +36,31 @@ function Header(props) {
     }
     
     const handleLoginSubmit = (e) => {
-        console.log(username)
-        console.log(password)
         e.preventDefault()
         let data = {'username': username, 'password': password}       
         fetch("/universe/login", {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify(data)}).then((res) => res.json())
-        .then((data) => localStorage.setItem("login", data.login)).then(() => { 
+        .then((data) => [localStorage.setItem("login", data.login), flashMessages(data.login)]).then(() => { 
             setLogin(localStorage.getItem("login"))
+            {localStorage.getItem("login")==='false' ? flashMessages('Incorrect Username/password!') : flashMessages('Login Succesful!')}
+            setTimeout(() => {
+                flashMessages(null)
+            }, 3000);
         });
         setShow(false);                             
     }
 
-    const handleLogout = (e) => {
-        console.log('sssss')
+    const handleLogout = (e) => {        
         e.preventDefault()               
         fetch("/universe/logout").then((res) => res.json())
         .then((data) => [localStorage.setItem("login", data.login)]).then(() => {            
             setLogin(localStorage.getItem("login"))
         });                             
-    }
-    console.log(login)
+    } 
+
     
-    return (
+    return (        
         <div className="Header">
+            {flash ? <div className="text-light flash-messages">{flash}</div> : <div></div>}
             <Row className="text-center m-0">
                 <Col className="logo" xs={2} md={2} lg={2}></Col>                               
                 <Col className="h1 my-auto text-start header-text" xs={5} md={6} lg={6}>Our Universe</Col>                
@@ -67,7 +71,7 @@ function Header(props) {
                     {login==='true' ? <a href="#" className="text-light p-2"><i class="fas text-success fa-user"></i></a> : <a onClick={handleShow} className="text-light p-2" href="#"><i class="fas fa-user"></i></a>}
                     {login==='true' ? <div onClick={handleLogout} className="text-light admin p-2 btn"><i class="fas fa-sign-out-alt"></i></div> : <div></div>}
                 </Col>            
-            </Row>
+            </Row>            
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header className="m-0 p-2" closeButton>
                     <Modal.Title>Admin Login</Modal.Title>

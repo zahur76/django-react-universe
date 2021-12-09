@@ -9,6 +9,7 @@ function Universe(props) {
     const [search, setSearch] = useState(null);
     const [media, setMedia] = useState(null)
     const [planet, planetView] = useState(true)
+    
 
     const handleSearchTerm = (event) => {
         let allItems  = search        

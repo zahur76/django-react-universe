@@ -39,7 +39,7 @@ a {
     color: white;
     background-image: url('../media/planets.jpg');
     background-size: cover;
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 .login-form input {
@@ -52,6 +52,15 @@ a {
 
 .admin {
     display: inline-block;
+}
+
+.flash-messages {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    padding: 10px;
+    background-color:rgba(128, 128, 128, 0.473);
+    color:black; 
 }
 
 @media screen and (max-width: 576px){
