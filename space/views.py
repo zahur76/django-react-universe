@@ -48,7 +48,7 @@ def logout(request):
 @csrf_exempt
 def add_planet(request):
     ''' View to add planet'''
-    print('im here')
+    
     galaxy_dict = {
         '0' : 1,
         '1' : 1,
@@ -83,4 +83,12 @@ def add_planet(request):
         new_planet.save()
 
         return HttpResponse(status=200)
+
+
+def delete_planet(request, entity_id):
+    ''' View to return Delete entity Object'''
+    print('im here @ deletion')
+    entity = get_object_or_404(Entity, id=entity_id)
+    entity.delete()
+    return HttpResponse(status=200)
     

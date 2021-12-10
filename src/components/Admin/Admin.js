@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import './Admin.css'
+import { useIsRTL } from "react-bootstrap/esm/ThemeProvider";
 
 function Admin() {
   const [media, setMedia] = useState(null)
@@ -43,10 +44,17 @@ function Admin() {
     {modal ? setModal(false) : setModal(true)}
   }
 
+  const handleDeletion = (event) => {
+      let URL = `/universe/delete_planet/${event.target.name}`
+      fetch(URL).then((res) => {
+        console.log(res)
+    });
+  }
+
   const PlanetView = (data || []).map((element)=>            
     <Col className="text-light mb-2" key={element.id} xs={6} sm={3} lg={2}>
-      <a onClick={handleModal} href="#" className="image"><img src={media + element.image}/></a>                                             
-      {modal ? <div><a href="#" className="update text-danger btn border-light bg-update">Delete</a><br></br><a href="#" className="update text-info btn border-light p-2 m-1 bg-update">Update</a></div> : <div></div>}
+      <a onClick={handleModal} href="#" className="image"><img src={media + element.image}/></a>                                            
+      {modal ? <div><a href="#" onClick={handleDeletion} name={element.id} className="update text-danger btn border-light bg-update">Delete</a><br></br><a href="#" className="update text-info btn border-light p-2 m-1 bg-update">Update</a></div> : <div></div>}
     </Col>         
   )
 
