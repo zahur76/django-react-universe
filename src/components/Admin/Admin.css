@@ -15,6 +15,14 @@
     border-radius: 0;
 }
 
+.bg-update {
+    background-color: rgba(5, 5, 5, 0.137);
+}
+
+.bg-update:hover {
+    background-color: rgba(150, 150, 150, 0.137);
+}
+
 @media screen and (max-width: 576px){
     .form-select, .form-control {
         padding: 2px;

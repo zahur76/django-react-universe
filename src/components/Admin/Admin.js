@@ -14,7 +14,9 @@ function Admin() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const [modal, setModal] = useState(false);
+ 
+  
   // form
   const [planetName, setPlanetName] = useState(null);
   const [planetNickname, setPlanetNickname] = useState(null);
@@ -37,9 +39,14 @@ function Admin() {
       });        
   }, [])
 
+  const handleModal = () => {
+    {modal ? setModal(false) : setModal(true)}
+  }
+
   const PlanetView = (data || []).map((element)=>            
     <Col className="text-light mb-2" key={element.id} xs={6} sm={3} lg={2}>
-            <a href="#" className="image"><img src={media + element.image}/></a>                                   
+      <a onClick={handleModal} href="#" className="image"><img src={media + element.image}/></a>                                             
+      {modal ? <div><a href="#" className="update text-danger btn border-light bg-update">Delete</a><br></br><a href="#" className="update text-info btn border-light p-2 m-1 bg-update">Update</a></div> : <div></div>}
     </Col>         
   )
 
@@ -99,6 +106,7 @@ function Admin() {
         setShow(false)
     });
   }
+  
   return (
     <div className="Admin">
       {localStorage.getItem("login")==='false' ? <Navigate to='/' /> : console.log('')}
