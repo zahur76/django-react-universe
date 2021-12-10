@@ -1,9 +1,9 @@
 from django.shortcuts import HttpResponse, get_object_or_404
-from .models import Planet, System, Galaxy
+from .models import Entity, System, Galaxy
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 import json
-from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth import authenticate
 
 
 # Create your views here.
@@ -11,7 +11,7 @@ def home(request):
     ''' View to return all Galaxy objects'''
     all_planets = []
     print('it working')
-    all_data = Planet.objects.values('id',
+    all_data = Entity.objects.values('id',
         'galaxy__name', 'system__name', 'name', 'age', 'description','image', 'nickname', 'surface_area')
     for data in all_data:
         all_planets.append(data)
@@ -62,13 +62,13 @@ def add_planet(request):
         data = (request.POST)
         file = request.FILES['image']
 
-        new_planet = Planet.objects.create(
+        new_planet = Entity.objects.create(
             galaxy = get_object_or_404(Galaxy, id=galaxy_dict[data['galaxy']]),
             system = get_object_or_404(System, id=system_dict[data['system']]),
-            name = data['name'][0],
+            name = data['name'],
             nickname = data['nickname'],
             surface_area = int(data['surface_area']),
-            age = data['age'][0],
+            age = data['age'],
             description = data['description'],
             image = file
         )

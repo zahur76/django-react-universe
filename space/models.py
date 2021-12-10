@@ -4,7 +4,7 @@ class Galaxy(models.Model):
 
     class Meta:
         verbose_name_plural = "Galaxy"
-    
+
     name = models.CharField(max_length=254)
     age = models.CharField(max_length=254)
     description = models.CharField(max_length=254)
@@ -18,8 +18,8 @@ class System(models.Model):
 
     class Meta:
         verbose_name_plural = "System"
-    
-    name = models.CharField(max_length=254)    
+
+    name = models.CharField(max_length=254)
     age = models.CharField(max_length=254)
     description = models.CharField(max_length=254)
     image = models.ImageField()
@@ -28,11 +28,11 @@ class System(models.Model):
         return self.name
 
 
-class Planet(models.Model):
+class Entity(models.Model):
 
     class Meta:
-        verbose_name_plural = "Planet"
-    
+        verbose_name_plural = "Entity"
+
     galaxy = models.ForeignKey(
             'Galaxy', null=False, blank=False, on_delete=models.CASCADE,
             related_name='galaxy')
