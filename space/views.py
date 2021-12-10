@@ -63,13 +63,13 @@ def add_planet(request):
         file = request.FILES['image']
 
         new_planet = Planet.objects.create(
-            galaxy = get_object_or_404(Galaxy, id=galaxy_dict[data['galaxy'][0]]),
-            system = get_object_or_404(System, id=system_dict[data['system'][0]]),
+            galaxy = get_object_or_404(Galaxy, id=galaxy_dict[data['galaxy']]),
+            system = get_object_or_404(System, id=system_dict[data['system']]),
             name = data['name'][0],
-            nickname = data['nickname'][0],
-            surface_area = int(data['surface_area'][0]),
+            nickname = data['nickname'],
+            surface_area = int(data['surface_area']),
             age = data['age'][0],
-            description = data['description'][0],
+            description = data['description'],
             image = file
         )
         new_planet.save()
