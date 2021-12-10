@@ -28,6 +28,16 @@ class System(models.Model):
         return self.name
 
 
+class CelestrialBody(models.Model):
+
+    class Meta:
+        verbose_name_plural = "Celestrial Body"
+
+    name = models.CharField(max_length=254)
+
+    def __str__(self):
+        return self.name
+
 class Entity(models.Model):
 
     class Meta:
@@ -39,8 +49,11 @@ class Entity(models.Model):
     system = models.ForeignKey(
             'System', null=False, blank=False, on_delete=models.CASCADE,
             related_name='system')
+    celestrial = models.ForeignKey(
+            'CelestrialBody', null=False, blank=False, on_delete=models.CASCADE,
+            related_name='celestrial', default=1)
     name = models.CharField(max_length=254)
-    nickname = models.CharField(max_length=254, default="planet")
+    nickname = models.CharField(max_length=254)
     surface_area = models.IntegerField(default=999)
     age = models.CharField(max_length=254)
     description = models.CharField(max_length=1000)
