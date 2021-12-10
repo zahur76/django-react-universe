@@ -24,6 +24,7 @@ function Admin() {
   const [image, setImage] = useState(null);
   const [galaxy, setGalaxy] = useState(null);
   const [system, setSystem] = useState(null);
+  const [celestrial, setcelestrial] = useState(null);
 
   useEffect(() => {
       process.env.NODE_ENV==='development' ? setMedia('media/') : setMedia('https://django-react-universe.s3.amazonaws.com/static/') 
@@ -75,22 +76,17 @@ function Admin() {
     setSystem(event.target.value)             
   }
 
+  const handleCelestrialChange = (event) => {
+    setcelestrial(event.target.value)             
+  }
+
   const handlePlanetSubmit = (e) => {
     e.preventDefault()
-    console.log(image)
-    // let form_data = e.target.elements
-    // let formData = {'galaxy': form_data.galaxy.value, 
-    //             'system': form_data.system.value, 
-    //             'name': form_data.name.value, 
-    //             'nickname': form_data.nickname.value, 
-    //             'surface_area': form_data.surface.value,
-    //             'age': form_data.age.value,
-    //             'description': form_data.description.value,
-    //             'image': image
-    //           }
+    
     let formData = new FormData()
     formData.append('galaxy', galaxy)
     formData.append('system', system)
+    formData.append('celestrial', celestrial)
     formData.append('name', planetName)
     formData.append('nickname', planetNickname)
     formData.append('surface_area', surfaceArea)
@@ -114,7 +110,7 @@ function Admin() {
           <a href="/admin" className="p-2"><i class="fas text-success fa-user"></i></a> 
         </Col>
       </Row>
-      <div onClick={handleShow} className="btn btn-dark w-50 mt-3 text-light border-light my-auto">Add Planet <i class="fas fa-globe-americas"></i></div>
+      <div onClick={handleShow} className="btn btn-dark w-50 mt-3 text-light border-light my-auto">Add Celestrial Body <i class="fas fa-globe-americas"></i></div>
       <Row className="mt-2 m-0">
         {PlanetView}
       </Row>
@@ -131,6 +127,13 @@ function Admin() {
                   <Form.Select aria-label="Default select example" name="system" value={system} onChange={handleSystemChange} required>                   
                     <option value="0">Choose Systen</option> 
                     <option value="1">Solar System</option>                    
+                  </Form.Select>
+                  <Form.Select aria-label="Default select example" name="celestrial" value={celestrial} onChange={handleCelestrialChange} required>                   
+                    <option value="0">Celestrial Body</option> 
+                    <option value="1">Planet</option>
+                    <option value="2">Star</option>
+                    <option value="3">Comet</option>
+                    <option value="4">Asteroid</option>                       
                   </Form.Select>
                   <Form.Control type="text" name="name" placeholder="Name"  value={planetName} onChange={handlePlanetNameChange} required/>
                   <Form.Control type="text" name="nickname" placeholder="Nickname" value={planetNickname} onChange={handlePlanetNicknameChange} required/>

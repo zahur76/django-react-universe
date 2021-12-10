@@ -75,6 +75,7 @@ function Universe(props) {
                         <Col className="text-start mt-2 p-4 h6" xs={12} sm={8} md={9} lg={9}>                                        
                             <div className="bg-custom p-2"> 
                                 <div className="h4 border-bottom border-info text-info">{element.name}: {element.nickname}</div>
+                                <div className="p-1 text-light">Classification: {element.celestrial__name}</div>
                                 <div className="p-1 text-light">Age: {element.age} Billion Years</div>
                                 <div className="p-1 text-light">Surface: {element.surface_area} Million Km2</div>
                                 <div className="p-1 description text-light">{element.description}</div>
