@@ -59,11 +59,11 @@ function Universe(props) {
     const compactView = (data || []).map((element)=>            
                 <Col className="text-light mb-2" key={element.id} xs={12} sm={6} md={4} lg={3}>
                         <img src={media + element.image}/>
-                        <div className="text-info">                                        
-                            <div className="h4">{element.name}</div>
-                            <div>{element.age} Billion Years</div>                            
-                            <div>{element.galaxy__name}</div>
-                            <div>{element.system__name}</div>
+                        <div>                                        
+                            <div className="h4 text-info">{element.name}</div>
+                            <div className="text-light">{element.age} Billion Years</div>                            
+                            <div className="text-light">{element.galaxy__name}</div>
+                            <div className="text-light">{element.system__name}</div>
                         </div>                        
                 </Col>         
         )
@@ -72,13 +72,15 @@ function Universe(props) {
             <Col className="mt-2 text-light" key={element.id} xs={12}>
                     <Row className="mx-auto">
                         <img className="col-xs-12 col-sm-4 col-md-3 col-lg-3 planet-image" src={media + element.image}/>
-                        <Col className="text-start mt-2 p-4 text-info h6" xs={12} sm={8} md={9} lg={9}>                                        
-                            <div className="h4 border-bottom border-info">{element.name}: {element.nickname}</div>
-                            <div className="p-1">Age: {element.age} Billion Years</div>
-                            <div className="p-1">Surface: {element.surface_area} Million Km2</div>
-                            <div className="p-1 description">{element.description}</div>
-                            <div className="p-1">Galaxy: <a href="#" className="milky-way border-bottom border-info text-info">{element.galaxy__name}</a></div>
-                            <div className="p-1">System: {element.system__name}</div>                            
+                        <Col className="text-start mt-2 p-4 h6" xs={12} sm={8} md={9} lg={9}>                                        
+                            <div className="bg-custom p-2"> 
+                                <div className="h4 border-bottom border-info text-info">{element.name}: {element.nickname}</div>
+                                <div className="p-1 text-light">Age: {element.age} Billion Years</div>
+                                <div className="p-1 text-light">Surface: {element.surface_area} Million Km2</div>
+                                <div className="p-1 description text-light">{element.description}</div>
+                                <div className="p-1 text-light">Galaxy: <a href="#" className="milky-way border-bottom border-info text-light">{element.galaxy__name}</a></div>
+                                <div className="p-1 text-light">System: {element.system__name}</div>                            
+                            </div>
                         </Col>
                     </Row>                        
             </Col>         

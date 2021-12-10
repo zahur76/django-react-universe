@@ -1,6 +1,5 @@
-from django.shortcuts import HttpResponse
-from django.core.serializers import serialize
-from .models import Planet
+from django.shortcuts import HttpResponse, get_object_or_404
+from .models import Planet, System, Galaxy
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -50,9 +49,30 @@ def logout(request):
 def add_planet(request):
     ''' View to add planet'''
     print('im here')
+    galaxy_dict = {
+        '0' : 1,
+        '1' : 1,
+    }
+    system_dict = {
+        '0': 1,
+        '1': 1,
+    }
     if request.method == 'POST':
-        data = json.loads(request.body)
-        print(data)
+        
+        data = (request.POST)
+        file = request.FILES['image']
 
-    return HttpResponse(status=200)
+        new_planet = Planet.objects.create(
+            galaxy = get_object_or_404(Galaxy, id=galaxy_dict[data['galaxy'][0]]),
+            system = get_object_or_404(System, id=system_dict[data['system'][0]]),
+            name = data['name'][0],
+            nickname = data['nickname'][0],
+            surface_area = int(data['surface_area'][0]),
+            age = data['age'][0],
+            description = data['description'][0],
+            image = file
+        )
+        new_planet.save()
+
+        return HttpResponse(status=200)
     

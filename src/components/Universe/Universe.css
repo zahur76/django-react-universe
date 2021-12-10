@@ -1,7 +1,7 @@
 img {
     width: 100%;
     padding: 20px;
-    opacity: 0.5;
+    opacity: 0.8 !important;
 }
 
 input {
@@ -15,6 +15,10 @@ input {
 
 .milky-way:hover {
     color: rgb(190, 227, 250) !important;
+}
+
+.bg-custom {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 576px){

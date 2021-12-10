@@ -37,7 +37,7 @@ function Admin() {
   }, [])
 
   const PlanetView = (data || []).map((element)=>            
-    <Col className="text-light mb-2" key={element.id} xs={2}>
+    <Col className="text-light mb-2" key={element.id} xs={6} sm={3} lg={2}>
             <a href="#" className="image"><img src={media + element.image}/></a>                                   
     </Col>         
   )
@@ -61,39 +61,51 @@ function Admin() {
     setDescription(event.target.value)              
   }
 
-  const handleImageChange = (event) => {
-    setImage(event.target.value)              
+   const handleImageChange = (event) => {
+    event.preventDefault();    
+    let file = event.target.files[0];    
+    setImage(file);       
   }
 
   const handleGalaxyChange = (event) => {
-    setGalaxy(event.target.value)
-    console.log(event.target.value)              
+    setGalaxy(event.target.value)                  
   }
   
   const handleSystemChange = (event) => {
-    setSystem(event.target.value)
-    console.log(event.target.value)              
+    setSystem(event.target.value)             
   }
 
   const handlePlanetSubmit = (e) => {
     e.preventDefault()
-    let formData = {'galaxy': galaxy, 
-                'system': system, 
-                'name': planetName, 
-                'nickname': planetNickname, 
-                'surface_area': surfaceArea,
-                'age': age,
-                'description': description,
-                'image': image
-              }
-    fetch("/universe/add_planet", {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify(formData)}).then((res) => { 
+    console.log(image)
+    // let form_data = e.target.elements
+    // let formData = {'galaxy': form_data.galaxy.value, 
+    //             'system': form_data.system.value, 
+    //             'name': form_data.name.value, 
+    //             'nickname': form_data.nickname.value, 
+    //             'surface_area': form_data.surface.value,
+    //             'age': form_data.age.value,
+    //             'description': form_data.description.value,
+    //             'image': image
+    //           }
+    let formData = new FormData()
+    formData.append('galaxy', galaxy)
+    formData.append('system', system)
+    formData.append('name', planetName)
+    formData.append('nickname', planetNickname)
+    formData.append('surface_area', surfaceArea)
+    formData.append('age', age)
+    formData.append('description', description)
+    formData.append('image', image)
+
+    fetch("/universe/add_planet", {method: 'POST', "Content-Type": "multipart/form-data", body: formData}).then((res) => { 
         console.log(res)
         setShow(false)
     });
   }
   return (
     <div className="Admin">
-      {localStorage.getItem("login")==='false' ? <Navigate to='/' /> : console.log('zahur')}
+      {localStorage.getItem("login")==='false' ? <Navigate to='/' /> : console.log('')}
       <Row className="m-0">
         <Col xs={0} md={3}><h1></h1></Col>
         <Col xs={8} md={6} className="text-light"><h1>Admin</h1></Col>
@@ -125,7 +137,7 @@ function Admin() {
                   <Form.Control type="number" name="surface" placeholder="Surface Area" value={surfaceArea} onChange={handleSurfaceAreaChange} required/>
                   <Form.Control type="text" name="age" placeholder="Age" value={age} onChange={handleAgeChange} required/>
                   <Form.Control type="text" name="description" placeholder="Description" value={description} onChange={handleDescriptionChange} required/>
-                  <Form.Control name="image" type="file" multiple value={image} onChange={handleImageChange} required/>                 
+                  <Form.Control name="image" type="file" multiple onChange={handleImageChange} required/>                 
                   <input className="col-12 btn submit-button text-light mt-2 border-light" type="submit" value="Submit" />  
               </form>
           </Modal.Body>                
