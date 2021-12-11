@@ -23,6 +23,30 @@
     background-color: rgba(150, 150, 150, 0.137);
 }
 
+.update-form {
+    position: absolute;
+    width: 35%;
+    top: 15%;
+    left: 32%;
+    padding: 20px;
+}
+
+.bg-update-modal {
+    background-color: rgba(5, 5, 5, 0.616);
+}
+
+.form-control {
+    padding: 2px !important;
+}
+
+
+@media screen and (max-width: 992px){
+    .update-form {        
+        width: 60%;
+        left: 20%
+    }    
+}
+
 @media screen and (max-width: 576px){
     .form-select, .form-control {
         padding: 2px;
@@ -31,5 +55,9 @@
         width: 90%;
         left: 5%;
     }
-    
+
+    .update-form {        
+        width: 90%;
+        left: 5%
+    }    
 }

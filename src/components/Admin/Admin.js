@@ -6,18 +6,23 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import './Admin.css'
 import { useIsRTL } from "react-bootstrap/esm/ThemeProvider";
+import { Button } from "bootstrap";
 
 function Admin() {
   const [media, setMedia] = useState(null)
   const [data, setData] = useState(null);
 
-  // Modal
+  // Modal Add Planet
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => [setShow(true), updateModal(false)];
+  //Update delete buttons
   const [modal, setModal] = useState(false);
- 
   
+  //Update buttons
+  const [update, updateModal] = useState(false);
+  const handleUpdateClose = () => updateModal(false); 
+   
   // form
   const [planetName, setPlanetName] = useState(null);
   const [planetNickname, setPlanetNickname] = useState(null);
@@ -47,14 +52,53 @@ function Admin() {
   const handleDeletion = (event) => {
       let URL = `/universe/delete_planet/${event.target.name}`
       fetch(URL).then((res) => {
-        console.log(res)
+        window.location.reload();
     });
+  }
+  
+  const handleUpdate = (event) => {
+    let id = event.target.name
+    console.log(id)
+    console.log(data)
+    setShow(false)
+    return updateModal(
+      <div className="container bg-update-modal p-5 pt-1 pb-3 mx-auto update-form">
+          <h4 className="text-light border-bottom p-2 text-start">Update</h4>
+          <form>
+            <Form.Select aria-label="Default select example" name="galaxy" value={galaxy} onChange={handleGalaxyChange}>
+              <option value="0">Choose Galaxy</option> 
+              <option value="1">Milky Way</option>                  
+            </Form.Select>
+            <Form.Select aria-label="Default select example" name="system" value={system} onChange={handleSystemChange} required>                   
+              <option value="0">Choose Systen</option> 
+              <option value="1">Solar System</option>                    
+            </Form.Select>
+            <Form.Select aria-label="Default select example" name="celestrial" value={celestrial} onChange={handleCelestrialChange} required>                   
+              <option value="0">Celestrial Body</option> 
+              <option value="1">Planet</option>
+              <option value="2">Star</option>
+              <option value="3">Comet</option>
+              <option value="4">Asteroid</option>                       
+            </Form.Select>
+            <Form.Control type="text" name="name" placeholder="Name"  value={planetName} onChange={handlePlanetNameChange} required/>
+            <Form.Control type="text" name="nickname" placeholder="Nickname" value={planetNickname} onChange={handlePlanetNicknameChange} required/>
+            <Form.Control type="number" name="surface" placeholder="Surface Area" value={surfaceArea} onChange={handleSurfaceAreaChange} required/>
+            <Form.Control type="text" name="age" placeholder="Age" value={age} onChange={handleAgeChange} required/>
+            <Form.Control type="text" name="description" placeholder="Description" value={description} onChange={handleDescriptionChange} required/>
+            <Form.Control name="image" type="file" multiple onChange={handleImageChange} required/>                 
+            <input className="col-12 btn submit-button text-light mt-2 border-light" type="submit" value="Submit" />
+            <div onClick={handleUpdateClose} className="btn w-100 text-light mt-2 border-light bg-dark">Close</div>
+          </form>
+        </div>
+    )
   }
 
   const PlanetView = (data || []).map((element)=>            
     <Col className="text-light mb-2" key={element.id} xs={6} sm={3} lg={2}>
       <a onClick={handleModal} href="#" className="image"><img src={media + element.image}/></a>                                            
-      {modal ? <div><a href="#" onClick={handleDeletion} name={element.id} className="update text-danger btn border-light bg-update">Delete</a><br></br><a href="#" className="update text-info btn border-light p-2 m-1 bg-update">Update</a></div> : <div></div>}
+      {modal ? <div><a href="#" onClick={handleDeletion} name={element.id} className="update text-danger btn border-light bg-update">Delete</a><br></br>
+        <a onClick={handleUpdate} name={element.id} href="#" className="update text-info btn border-light p-2 m-1 bg-update">Update</a>
+        </div> : <div></div>}      
     </Col>         
   )
 
@@ -110,7 +154,7 @@ function Admin() {
     formData.append('image', image)
 
     fetch("/universe/add_planet", {method: 'POST', "Content-Type": "multipart/form-data", body: formData}).then((res) => { 
-        console.log(res)
+        window.location.reload();
         setShow(false)
     });
   }
@@ -161,6 +205,7 @@ function Admin() {
               </form>
           </Modal.Body>                
       </Modal>
+      {update}
     </div>
     
   );
