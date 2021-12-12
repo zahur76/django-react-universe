@@ -5,8 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import './Admin.css'
-import { useIsRTL } from "react-bootstrap/esm/ThemeProvider";
-import { Button } from "bootstrap";
+
 
 function Admin() {
   const [media, setMedia] = useState(null)
@@ -21,9 +20,8 @@ function Admin() {
   
   //Update buttons
   const [update, updateModal] = useState(false);
-  const handleUpdateClose = () => updateModal(false); 
    
-  // form
+  // Add  Planet form
   const [planetName, setPlanetName] = useState(null);
   const [planetNickname, setPlanetNickname] = useState(null);
   const [surfaceArea, setSurfaceArea] = useState(null);
@@ -56,41 +54,8 @@ function Admin() {
     });
   }
   
-  const handleUpdate = (event) => {
-    let id = event.target.name
-    console.log(id)
-    console.log(data)
-    setShow(false)
-    return updateModal(
-      <div className="container bg-update-modal p-5 pt-1 pb-3 mx-auto update-form">
-          <h4 className="text-light border-bottom p-2 text-start">Update</h4>
-          <form>
-            <Form.Select aria-label="Default select example" name="galaxy" value={galaxy} onChange={handleGalaxyChange}>
-              <option value="0">Choose Galaxy</option> 
-              <option value="1">Milky Way</option>                  
-            </Form.Select>
-            <Form.Select aria-label="Default select example" name="system" value={system} onChange={handleSystemChange} required>                   
-              <option value="0">Choose Systen</option> 
-              <option value="1">Solar System</option>                    
-            </Form.Select>
-            <Form.Select aria-label="Default select example" name="celestrial" value={celestrial} onChange={handleCelestrialChange} required>                   
-              <option value="0">Celestrial Body</option> 
-              <option value="1">Planet</option>
-              <option value="2">Star</option>
-              <option value="3">Comet</option>
-              <option value="4">Asteroid</option>                       
-            </Form.Select>
-            <Form.Control type="text" name="name" placeholder="Name"  value={planetName} onChange={handlePlanetNameChange} required/>
-            <Form.Control type="text" name="nickname" placeholder="Nickname" value={planetNickname} onChange={handlePlanetNicknameChange} required/>
-            <Form.Control type="number" name="surface" placeholder="Surface Area" value={surfaceArea} onChange={handleSurfaceAreaChange} required/>
-            <Form.Control type="text" name="age" placeholder="Age" value={age} onChange={handleAgeChange} required/>
-            <Form.Control type="text" name="description" placeholder="Description" value={description} onChange={handleDescriptionChange} required/>
-            <Form.Control name="image" type="file" multiple onChange={handleImageChange} required/>                 
-            <input className="col-12 btn submit-button text-light mt-2 border-light" type="submit" value="Submit" />
-            <div onClick={handleUpdateClose} className="btn w-100 text-light mt-2 border-light bg-dark">Close</div>
-          </form>
-        </div>
-    )
+  const handleUpdate = (event) => {    
+    console.log(event.target.name)    
   }
 
   const PlanetView = (data || []).map((element)=>            
@@ -104,45 +69,47 @@ function Admin() {
 
   const handlePlanetNameChange = (event) => {
     setPlanetName(event.target.value)              
-  }
+  }  
 
   const handlePlanetNicknameChange = (event) => {
     setPlanetNickname(event.target.value)              
-  }
+  } 
 
   const handleSurfaceAreaChange = (event) => {
     setSurfaceArea(event.target.value)              
-  }
+  }  
+
   const handleAgeChange = (event) => {
     setAge(event.target.value)              
-  }
+  }  
 
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value)              
-  }
+  }  
 
-   const handleImageChange = (event) => {
+  const handleImageChange = (event) => {
     event.preventDefault();    
     let file = event.target.files[0];    
     setImage(file);       
-  }
+  }  
 
   const handleGalaxyChange = (event) => {
     setGalaxy(event.target.value)                  
   }
   
+  
   const handleSystemChange = (event) => {
     setSystem(event.target.value)             
-  }
+  }  
 
   const handleCelestrialChange = (event) => {
     setcelestrial(event.target.value)             
-  }
+  }  
 
   const handlePlanetSubmit = (e) => {
     e.preventDefault()
     
-    let formData = new FormData()
+    let formData = new FormData()    
     formData.append('galaxy', galaxy)
     formData.append('system', system)
     formData.append('celestrial', celestrial)
@@ -157,7 +124,7 @@ function Admin() {
         window.location.reload();
         setShow(false)
     });
-  }
+  } 
   
   return (
     <div className="Admin">
@@ -205,9 +172,7 @@ function Admin() {
               </form>
           </Modal.Body>                
       </Modal>
-      {update}
-    </div>
-    
+    </div>    
   );
 }
 

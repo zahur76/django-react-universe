@@ -21,6 +21,10 @@ input {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+.modal-content {
+    opacity: 1 !important;
+}
+
 @media screen and (max-width: 576px){
     img {
         width: 75%;

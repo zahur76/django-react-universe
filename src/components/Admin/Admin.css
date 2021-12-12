@@ -37,8 +37,8 @@
 
 .form-control {
     padding: 2px !important;
+    padding-left: 10px !important;
 }
-
 
 @media screen and (max-width: 992px){
     .update-form {        

@@ -5,7 +5,6 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.contrib.auth import authenticate
 
-
 # Create your views here.
 def home(request):
     ''' View to return all Galaxy objects'''
@@ -87,8 +86,23 @@ def add_planet(request):
 
 def delete_planet(request, entity_id):
     ''' View to return Delete entity Object'''
-    print('im here @ deletion')
+
     entity = get_object_or_404(Entity, id=entity_id)
     entity.delete()
     return HttpResponse(status=200)
+
+def galaxy(request, galaxy):
+    ''' View to return Selected Galaxy entity Object'''
+    print('im here @ update')
+    print(galaxy)
+    galaxy = get_object_or_404(Galaxy, name=galaxy)
+    print(str(galaxy.image))
+    galaxy_dict = {
+        'name': galaxy.name,
+        'age': galaxy.age,
+        'description': galaxy.description,
+        'image': str(galaxy.image)
+    }
+    return HttpResponse(json.dumps(galaxy_dict),
+                content_type='application/json')
     

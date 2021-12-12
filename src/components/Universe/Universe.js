@@ -2,13 +2,26 @@ import { React, useState, useEffect } from "react";
 import './Universe.css';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
+import Modal from 'react-bootstrap/Modal'
 
 function Universe(props) {
+    // Modal Galaxy
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = (event) => {        
+        console.log(event.target.name)
+        fetch(`/universe/galaxy/${event.target.name}`).then((res) => res.json())
+        .then((data) => [setGalaxy([data]), console.log(data), setShow(true)]).catch((error) => {
+            console.log(error)       
+        }); 
+    }
+
+    
     const [data, setData] = useState(null);
     const [search, setSearch] = useState(null);
     const [media, setMedia] = useState(null)
     const [planet, planetView] = useState(true)
+    const [galaxy, setGalaxy] = useState(null);
     
 
     const handleSearchTerm = (event) => {
@@ -17,8 +30,7 @@ function Universe(props) {
         let newList = []    
         allItems.map(element=>{        
             if(((element.name).toLowerCase()).includes(term.toLowerCase())){
-                newList.push(element)          
-                           
+                newList.push(element)                   
             }                                                 
         })
         setData(newList)
@@ -44,7 +56,6 @@ function Universe(props) {
         });        
     }, [])
 
-
     const handleChangeView = () => {
         {planet ? planetView(false) : planetView(true)}
     }
@@ -66,7 +77,7 @@ function Universe(props) {
                             <div className="text-light">{element.system__name}</div>
                         </div>                        
                 </Col>         
-        )
+        )    
     
     const detailView = (data || []).map((element)=>            
             <Col className="mt-2 text-light" key={element.id} xs={12}>
@@ -79,14 +90,27 @@ function Universe(props) {
                                 <div className="p-1 text-light">Age: {element.age} Billion Years</div>
                                 <div className="p-1 text-light">Surface: {element.surface_area} Million Km2</div>
                                 <div className="p-1 description text-light">{element.description}</div>
-                                <div className="p-1 text-light">Galaxy: <a href="#" className="milky-way border-bottom border-info text-light">{element.galaxy__name}</a></div>
+                                <div className="p-1 text-light">Galaxy: <a onClick={handleShow} name={element.galaxy__name} className="milky-way border-bottom text-light btn">{element.galaxy__name}</a></div>
                                 <div className="p-1 text-light">System: {element.system__name}</div>                            
                             </div>
                         </Col>
                     </Row>                        
             </Col>         
     )
-    
+
+    const GalaxyView = (galaxy || []).map((element)=>            
+        <Row>
+            <Col xs={12} className="h4 text-info text-center border-bottom border-info">{element.name}</Col>
+            <Row className="m-0">
+                <Col className="text-center" xs={12} sm={6}><img src={media + element.image}/></Col>       
+                <Col xs={12} sm={6} className="text-light mt-3 p-0">
+                    <div>Age: {element.age} Billion Years</div>
+                    <div className="mt-1"> {element.description}</div>
+                </Col>                            
+            </Row>                       
+        </Row>         
+    )
+     
     return (
         <div>
             {statusBar(props.searchStatus)}
@@ -98,8 +122,14 @@ function Universe(props) {
                     {handlePlanetView()}
                 </Row>            
             </div>
-        </div>
-    );
+            <Modal show={show} onHide={handleClose}>                
+                <Modal.Body>
+                    {GalaxyView}
+                </Modal.Body>                   
+            </Modal>
+        </div>       
+        
+        );
     }
 
 export default Universe;

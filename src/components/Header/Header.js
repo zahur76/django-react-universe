@@ -41,7 +41,7 @@ function Header(props) {
         fetch("/universe/login", {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify(data)}).then((res) => res.json())
         .then((data) => [localStorage.setItem("login", data.login), flashMessages(data.login)]).then(() => { 
             setLogin(localStorage.getItem("login"))
-            {localStorage.getItem("login")==='false' ? flashMessages('Incorrect Username/password!') : flashMessages('Login Succesful!')}
+            {localStorage.getItem("login")==='false' ? flashMessages('Incorrect Username/password!') : flashMessages('Login Successful!')}
             setTimeout(() => {
                 flashMessages(null)
             }, 3000);

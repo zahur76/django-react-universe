@@ -9,4 +9,5 @@ urlpatterns = [
     path('/logout', views.logout, name='logout'),
     path('/add_planet', views.add_planet, name='add_planet'),
     path('/delete_planet/<int:entity_id>', views.delete_planet, name='delete_planet'),
+    path('/galaxy/<str:galaxy>', views.galaxy, name='galaxy'),
 ]
