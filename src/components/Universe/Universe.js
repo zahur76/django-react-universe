@@ -170,7 +170,7 @@ function Universe(props) {
                                 <div className="bg-custom p-2"> 
                                     <div className="h4 border-bottom border-info text-info">{element.name}: {element.nickname}</div>
                                     <div className="p-1 text-light">Classification: {element.celestrial__name}</div>
-                                    <div className="p-1 text-light">Age: {element.age} Billion Years</div>
+                                    {element.age==='unknown' ? <div className="p-1 text-light">Age: {element.age} </div> : <div className="p-1 text-light">Age: {element.age} Billion Years</div>}
                                     <div className="p-1 text-light">Surface: {element.surface_area} Million Km2</div>
                                     <div className="p-1 description text-light">{element.description}</div>
                                     <div className="p-1">Galaxy: <a onClick={handleShow} name={element.galaxy__name} id="galaxy" className="milky-way border-bottom p-1 text-light btn">{element.galaxy__name}</a></div>
