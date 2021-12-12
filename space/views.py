@@ -94,7 +94,6 @@ def delete_planet(request, entity_id):
 def galaxy(request, galaxy):
     ''' View to return Selected Galaxy entity Object'''
     galaxy = get_object_or_404(Galaxy, name=galaxy)
-    print(str(galaxy.image))
     galaxy_dict = {
         'name': galaxy.name,
         'age': galaxy.age,
@@ -103,4 +102,17 @@ def galaxy(request, galaxy):
     }
     return HttpResponse(json.dumps(galaxy_dict),
                 content_type='application/json')
+
+def system(request, system):
+    ''' View to return Selected System entity Object'''
+    system = get_object_or_404(System, name=system)
+    system_dict = {
+        'name': system.name,
+        'age': system.age,
+        'description': system.description,
+        'image': str(system.image)
+    }
+    return HttpResponse(json.dumps(system_dict),
+                content_type='application/json')
+
     
