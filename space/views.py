@@ -93,8 +93,6 @@ def delete_planet(request, entity_id):
 
 def galaxy(request, galaxy):
     ''' View to return Selected Galaxy entity Object'''
-    print('im here @ update')
-    print(galaxy)
     galaxy = get_object_or_404(Galaxy, name=galaxy)
     print(str(galaxy.image))
     galaxy_dict = {

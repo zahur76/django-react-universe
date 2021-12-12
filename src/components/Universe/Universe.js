@@ -8,14 +8,19 @@ function Universe(props) {
     // Modal Galaxy
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = (event) => {        
-        console.log(event.target.name)
-        fetch(`/universe/galaxy/${event.target.name}`).then((res) => res.json())
+    const handleShow = (event) => {
+        const galaxyQuery = () => fetch(`/universe/galaxy/${event.target.name}`).then((res) => res.json())
         .then((data) => [setGalaxy([data]), console.log(data), setShow(true)]).catch((error) => {
             console.log(error)       
-        }); 
+        });
+        const systemQuery = () => fetch(`/universe/system/${event.target.name}`).then((res) => res.json())
+        .then((data) => [setGalaxy([data]), console.log(data), setShow(true)]).catch((error) => {
+            console.log(error)       
+        });        
+        console.log(event.target.name)
+        let category = event.target.id
+        {category==='galaxy' ? galaxyQuery() : systemQuery()}
     }
-
     
     const [data, setData] = useState(null);
     const [search, setSearch] = useState(null);
@@ -90,8 +95,8 @@ function Universe(props) {
                                 <div className="p-1 text-light">Age: {element.age} Billion Years</div>
                                 <div className="p-1 text-light">Surface: {element.surface_area} Million Km2</div>
                                 <div className="p-1 description text-light">{element.description}</div>
-                                <div className="p-1">Galaxy: <a onClick={handleShow} name={element.galaxy__name} className="milky-way border-bottom p-1 text-light btn">{element.galaxy__name}</a></div>
-                                <div className="p-1">System: <a onClick={handleShow} name={element.galaxy__name} className="milky-way border-bottom p-1 text-light btn">{element.system__name}</a></div>                            
+                                <div className="p-1">Galaxy: <a onClick={handleShow} name={element.galaxy__name} id="galaxy" className="milky-way border-bottom p-1 text-light btn">{element.galaxy__name}</a></div>
+                                <div className="p-1">System: <a onClick={handleShow} name={element.system__name} id="system" className="milky-way border-bottom p-1 text-light btn">{element.system__name}</a></div>                            
                             </div>
                         </Col>
                     </Row>                        
