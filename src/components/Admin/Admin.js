@@ -149,12 +149,16 @@ function Admin() {
               <form className="w-75 mx-auto login-form" onSubmit={handlePlanetSubmit}>
                   <Form.Select aria-label="Default select example" name="galaxy" value={galaxy} onChange={handleGalaxyChange}>
                     <option value="0">Choose Galaxy</option> 
-                    <option value="1">Milky Way</option>                  
+                    <option value="1">Milky Way</option>
+                    <option value="3">Unknown</option>
+                    <option value="4">N/A</option>                      
                   </Form.Select>
                   <Form.Select aria-label="Default select example" name="system" value={system} onChange={handleSystemChange} required>                   
                     <option value="0">Choose Systen</option> 
                     <option value="1">Solar System</option>
-                    <option value="2">Trappist-1 System</option>                     
+                    <option value="2">Trappist-1 System</option>
+                    <option value="3">Unknown</option>
+                    <option value="4">N/A</option>                     
                   </Form.Select>
                   <Form.Select aria-label="Default select example" name="celestrial" value={celestrial} onChange={handleCelestrialChange} required>                   
                     <option value="0">Celestrial Body</option> 
