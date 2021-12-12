@@ -164,6 +164,7 @@ function Admin() {
                     <option value="0">Choose Systen</option> 
                     <option value="1">Solar System</option>
                     <option value="2">Trappist-1 System</option>
+                    <option value="2">kepler186 System</option>
                     <option value="3">Unknown</option>
                     <option value="4">N/A</option>                     
                   </Form.Select>
