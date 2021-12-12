@@ -33,7 +33,7 @@ function Universe(props) {
     const [starActive, setStarActive] = useState(false);
     const [cometActive, setCometActive] = useState(false);
     const [AsteroidActive, setAsteroidActive] = useState(false);
-    const [celestrial, setCelestrial] = useState(null)
+    const [celestrial, setCelestrial] = useState('all')
 
     const handleAllActive = () => {
         handleClassification('all')
@@ -93,15 +93,25 @@ function Universe(props) {
     }
 
     const handleSearchTerm = (event) => {
+        console.log(celestrial)
         let allItems  = search        
         let term = event.target.value        
-        let newList = []    
-        allItems.map(element=>{        
-            if(((element.name).toLowerCase()).includes(term.toLowerCase()) && ((element.celestrial__name===celestrial))){
-                newList.push(element)                   
-            }                                                 
-        })
+        let newList = []          
+        const allPlanets = () => {allItems.map(element=>{        
+                if(((element.name).toLowerCase()).includes(term.toLowerCase())){
+                    newList.push(element)                   
+                }                                                 
+            })
         setData(newList)
+        }
+        const selectedPlanets = () => {allItems.map(element=>{        
+                if(((element.name).toLowerCase()).includes(term.toLowerCase()) && ((element.celestrial__name===celestrial))){
+                    newList.push(element)                   
+                }                                                 
+            })
+        setData(newList)
+        }
+        {celestrial==='all' ? allPlanets() : selectedPlanets() }  
     }
 
     const statusBar = (status) => {                
