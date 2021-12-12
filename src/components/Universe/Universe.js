@@ -27,7 +27,67 @@ function Universe(props) {
     const [media, setMedia] = useState(null)
     const [planet, planetView] = useState(true)
     const [galaxy, setGalaxy] = useState(null);
+    const [allActive, setAllActive] = useState(true);
+    const [planetActive, setPlanetActive] = useState(false);
+    const [starActive, setStarActive] = useState(false);
+    const [cometActive, setCometActive] = useState(false);
+    const [AsteroidActive, setAsteroidActive] = useState(false);
+
+    const handleAllActive = () => {
+        handleClassification('all')
+        setAsteroidActive(false)
+        setCometActive(false)
+        setAllActive(true)
+        setPlanetActive(false)
+        setStarActive(false)
+    }
+
+    const handlePlanetActive = () => {
+        handleClassification('planet')
+        setAsteroidActive(false)
+        setCometActive(false)
+        setAllActive(false)
+        setPlanetActive(true)
+        setStarActive(false)
+    }
+
+    const handleStarActive = () => {
+        handleClassification('star')
+        setAsteroidActive(false)
+        setCometActive(false)
+        setStarActive(true)
+        setAllActive(false)
+        setPlanetActive(false)
+    }
+
+    const handleCometActive = () => {
+        handleClassification('comet')
+        setAsteroidActive(false)
+        setCometActive(true)
+        setStarActive(false)
+        setAllActive(false)
+        setPlanetActive(false)
+    }
+
+    const handleAsteroidActive = () => {
+        handleClassification('asteroid')
+        setAsteroidActive(true)
+        setCometActive(false)
+        setStarActive(false)
+        setAllActive(false)
+        setPlanetActive(false)
+    }
     
+    const handleClassification  = (name) => {
+        let allItems  = search            
+        let newList = []    
+        allItems.map(element=>{        
+            if(((element.celestrial__name).toLowerCase()).includes(name.toLowerCase())){
+                newList.push(element)                   
+            }                                                 
+        })
+        {name==='all' ? setData(search): setData(newList)}
+    }
 
     const handleSearchTerm = (event) => {
         let allItems  = search        
@@ -116,12 +176,19 @@ function Universe(props) {
         </Row>         
     )
      
-    return (
+    return ( 
         <div>
             {statusBar(props.searchStatus)}
-            <div className="text-end">
-                <div onClick={handleChangeView} className="text-white btn p-3">{planet ? <i class="fas fa-list"></i> : <i class="fas fa-th"></i>}</div>
-            </div>
+            <Row className="text-center m-0">
+                <Col xs={9} md={10} className="text-ligh text-start">
+                    {allActive ? <div className="text-light btn celesterial-links border-bottom">All</div> : <div onClick={handleAllActive} className="text-light btn celesterial-links">All</div>}
+                    {planetActive ? <div className="text-light btn celesterial-links border-bottom">Planets</div> : <div onClick={handlePlanetActive} className="text-light btn celesterial-links">Planets</div>}
+                    {starActive ? <div className="text-light btn celesterial-links border-bottom">Stars</div> : <div onClick={handleStarActive}  className="text-light btn celesterial-links">Stars</div>}
+                    {cometActive ? <div className="text-light btn celesterial-links border-bottom">Comets</div> : <div onClick={handleCometActive} className="text-light btn celesterial-links">Comets</div>}
+                    {AsteroidActive ? <div className="text-light btn celesterial-links border-bottom">Asteroids</div> : <div onClick={handleAsteroidActive} className="text-light btn celesterial-links">Asteroids</div>}
+                </Col>
+                <Col xs={3} md={2} onClick={handleChangeView} className="p-2 pt-0 text-end">{planet ? <i class="text-white fas fa-list btn"></i> : <i class="text-white fas fa-th btn"></i>}</Col>
+            </Row>
             <div className="Planets mt-2">
                 <Row className="m-0 p-2">           
                     {handlePlanetView()}

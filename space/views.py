@@ -9,7 +9,6 @@ from django.contrib.auth import authenticate
 def home(request):
     ''' View to return all Galaxy objects'''
     all_planets = []
-    print('it working')
     all_data = Entity.objects.values('id',
         'galaxy__name', 'system__name', 'celestrial__name', 'name', 'age', 'description','image', 'nickname', 'surface_area')
     for data in all_data:
@@ -114,5 +113,3 @@ def system(request, system):
     }
     return HttpResponse(json.dumps(system_dict),
                 content_type='application/json')
-
-    
