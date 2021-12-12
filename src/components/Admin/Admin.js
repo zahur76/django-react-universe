@@ -33,7 +33,7 @@ function Admin() {
   const [celestrial, setcelestrial] = useState(null);
 
   useEffect(() => {
-      process.env.NODE_ENV==='development' ? setMedia('media/') : setMedia('https://django-react-universe.s3.amazonaws.com/') 
+      process.env.NODE_ENV==='development' ? setMedia('media/') : setMedia('https://django-react-universe.s3.amazonaws.com/static/') 
   }, [])
 
   useEffect(() => {
