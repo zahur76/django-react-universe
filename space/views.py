@@ -50,11 +50,16 @@ def add_planet(request):
     galaxy_dict = {
         '0' : 1,
         '1' : 1,
+        '2' : 2,
+        '3' : 3,
+        '4' : 4,
     }
     system_dict = {
         '0': 1,
         '1': 1,
         '2': 2,
+        '3': 3,
+        '4': 4,
     }
     celestrial_dict = {
         '0': 1,
