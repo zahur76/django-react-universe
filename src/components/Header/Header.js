@@ -73,7 +73,7 @@ function Header(props) {
                         {search ? <i class="fas fa-search"></i> : <i class="fas fa-search-minus"></i>}
                     </a>
                     : <div></div>}                    
-                    {login==='true' ? <a href="/admin" className="p-2"><i class="fas text-success fa-user"></i></a> : <a onClick={handleShow} className="text-light p-2" href="#"><i class="fas fa-user"></i></a>}
+                    {login==='true' ? <a href="/adminuser" className="p-2"><i class="fas text-success fa-user"></i></a> : <a onClick={handleShow} className="text-light p-2" href="#"><i class="fas fa-user"></i></a>}
                     {login==='true' ? <div onClick={handleLogout} className="text-light admin p-2 btn"><i class="fas fa-sign-out-alt"></i></div> : <div></div>}
                 </Col>            
             </Row>            
