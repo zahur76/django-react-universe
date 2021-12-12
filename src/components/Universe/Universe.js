@@ -90,8 +90,8 @@ function Universe(props) {
                                 <div className="p-1 text-light">Age: {element.age} Billion Years</div>
                                 <div className="p-1 text-light">Surface: {element.surface_area} Million Km2</div>
                                 <div className="p-1 description text-light">{element.description}</div>
-                                <div className="p-1 text-light">Galaxy: <a onClick={handleShow} name={element.galaxy__name} className="milky-way border-bottom text-light btn">{element.galaxy__name}</a></div>
-                                <div className="p-1 text-light">System: {element.system__name}</div>                            
+                                <div className="p-1">Galaxy: <a onClick={handleShow} name={element.galaxy__name} className="milky-way border-bottom p-1 text-light btn">{element.galaxy__name}</a></div>
+                                <div className="p-1">System: <a onClick={handleShow} name={element.galaxy__name} className="milky-way border-bottom p-1 text-light btn">{element.system__name}</a></div>                            
                             </div>
                         </Col>
                     </Row>                        
