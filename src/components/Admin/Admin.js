@@ -153,7 +153,8 @@ function Admin() {
                   </Form.Select>
                   <Form.Select aria-label="Default select example" name="system" value={system} onChange={handleSystemChange} required>                   
                     <option value="0">Choose Systen</option> 
-                    <option value="1">Solar System</option>                    
+                    <option value="1">Solar System</option>
+                    <option value="2">Trappist-1 System</option>                     
                   </Form.Select>
                   <Form.Select aria-label="Default select example" name="celestrial" value={celestrial} onChange={handleCelestrialChange} required>                   
                     <option value="0">Celestrial Body</option> 

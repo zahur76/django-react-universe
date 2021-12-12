@@ -54,6 +54,7 @@ def add_planet(request):
     system_dict = {
         '0': 1,
         '1': 1,
+        '2': 2,
     }
     celestrial_dict = {
         '0': 1,
