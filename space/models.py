@@ -54,6 +54,7 @@ class Entity(models.Model):
             related_name='celestrial', default=1)
     name = models.CharField(max_length=254)
     nickname = models.CharField(max_length=254)
+    constellation = models.CharField(max_length=254, default="cygnus")
     surface_area = models.IntegerField(default=999)
     age = models.CharField(max_length=254)
     description = models.CharField(max_length=1000)
