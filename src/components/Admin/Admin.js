@@ -31,6 +31,7 @@ function Admin() {
   const [galaxy, setGalaxy] = useState(null);
   const [system, setSystem] = useState(null);
   const [celestrial, setcelestrial] = useState(null);
+  const [constellation, setConstellation] = useState(null);
 
   useEffect(() => {
       process.env.NODE_ENV==='development' ? setMedia('media/') : setMedia('https://django-react-universe.s3.amazonaws.com/media/') 
@@ -104,7 +105,12 @@ function Admin() {
 
   const handleCelestrialChange = (event) => {
     setcelestrial(event.target.value)             
+  }
+  
+  const handleConstellationChange = (event) => {
+    setConstellation(event.target.value)             
   }  
+
 
   const handlePlanetSubmit = (e) => {
     e.preventDefault()
@@ -114,6 +120,7 @@ function Admin() {
     formData.append('system', system)
     formData.append('celestrial', celestrial)
     formData.append('name', planetName)
+    formData.append('constellation', constellation)
     formData.append('nickname', planetNickname)
     formData.append('surface_area', surfaceArea)
     formData.append('age', age)
@@ -169,6 +176,7 @@ function Admin() {
                   </Form.Select>
                   <Form.Control type="text" name="name" placeholder="Name"  value={planetName} onChange={handlePlanetNameChange} required/>
                   <Form.Control type="text" name="nickname" placeholder="Nickname" value={planetNickname} onChange={handlePlanetNicknameChange} required/>
+                  <Form.Control type="text" name="constellation" placeholder="Constellation"  value={constellation} onChange={handleConstellationChange} required/>
                   <Form.Control type="number" name="surface" placeholder="Surface Area" value={surfaceArea} onChange={handleSurfaceAreaChange} required/>
                   <Form.Control type="text" name="age" placeholder="Age" value={age} onChange={handleAgeChange} required/>
                   <Form.Control type="text" name="description" placeholder="Description" value={description} onChange={handleDescriptionChange} required/>

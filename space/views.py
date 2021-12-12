@@ -8,9 +8,10 @@ from django.contrib.auth import authenticate
 # Create your views here.
 def home(request):
     ''' View to return all Galaxy objects'''
+    print('im here')
     all_planets = []
     all_data = Entity.objects.values('id',
-        'galaxy__name', 'system__name', 'celestrial__name', 'name', 'age', 'description','image', 'nickname', 'surface_area')
+        'galaxy__name', 'system__name', 'celestrial__name', 'name', 'constellation', 'age', 'description','image', 'nickname', 'surface_area')
     for data in all_data:
         all_planets.append(data)
     return HttpResponse(json.dumps(all_planets),
@@ -78,6 +79,7 @@ def add_planet(request):
             system = get_object_or_404(System, id=system_dict[data['system']]),
             celestrial = get_object_or_404(CelestrialBody, id=celestrial_dict[data['celestrial']]),
             name = data['name'],
+            constellation= data['constellation'],
             nickname = data['nickname'],
             surface_area = int(data['surface_area']),
             age = data['age'],
