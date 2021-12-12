@@ -3,6 +3,7 @@ import './Universe.css';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Modal from 'react-bootstrap/Modal'
+import FadeIn from 'react-fade-in'
 
 function Universe(props) {
     // Modal Galaxy
@@ -32,6 +33,7 @@ function Universe(props) {
     const [starActive, setStarActive] = useState(false);
     const [cometActive, setCometActive] = useState(false);
     const [AsteroidActive, setAsteroidActive] = useState(false);
+    const [celestrial, setCelestrial] = useState(null)
 
     const handleAllActive = () => {
         handleClassification('all')
@@ -79,6 +81,7 @@ function Universe(props) {
     }
     
     const handleClassification  = (name) => {
+        setCelestrial(name)
         let allItems  = search            
         let newList = []    
         allItems.map(element=>{        
@@ -94,7 +97,7 @@ function Universe(props) {
         let term = event.target.value        
         let newList = []    
         allItems.map(element=>{        
-            if(((element.name).toLowerCase()).includes(term.toLowerCase())){
+            if(((element.name).toLowerCase()).includes(term.toLowerCase()) && ((element.celestrial__name===celestrial))){
                 newList.push(element)                   
             }                                                 
         })
@@ -132,35 +135,41 @@ function Universe(props) {
         return detailView
     }
 
-    const compactView = (data || []).map((element)=>            
-                <Col className="text-light mb-2" key={element.id} xs={12} sm={6} md={4} lg={3}>
-                        <img src={media + element.image}/>
-                        <div>                                        
-                            <div className="h4 text-info">{element.name}</div>
-                            <div className="text-light">{element.age} Billion Years</div>                            
-                            <div className="text-light">{element.galaxy__name}</div>
-                            <div className="text-light">{element.system__name}</div>
-                        </div>                        
-                </Col>         
+    const compactView = (data || []).map((element)=>                          
+                    <Col className="text-light mb-2" key={element.id} xs={12} sm={6} md={4} lg={3}>
+                            <FadeIn delay={500}>                       
+                                <img src={media + element.image}/>
+                            </FadeIn> 
+                            <FadeIn delay={1000}>
+                                <div>                                        
+                                    <div className="h4 text-info">{element.name}</div>
+                                    <div className="text-light">{element.age} Billion Years</div>                            
+                                    <div className="text-light">{element.galaxy__name}</div>
+                                    <div className="text-light">{element.system__name}</div>
+                                </div>
+                            </FadeIn>                    
+                    </Col>                 
         )    
     
-    const detailView = (data || []).map((element)=>            
-            <Col className="mt-2 text-light" key={element.id} xs={12}>
-                    <Row className="mx-auto">
-                        <img className="col-xs-12 col-sm-4 col-md-3 col-lg-3 planet-image" src={media + element.image}/>
-                        <Col className="text-start mt-2 p-4 h6" xs={12} sm={8} md={9} lg={9}>                                        
-                            <div className="bg-custom p-2"> 
-                                <div className="h4 border-bottom border-info text-info">{element.name}: {element.nickname}</div>
-                                <div className="p-1 text-light">Classification: {element.celestrial__name}</div>
-                                <div className="p-1 text-light">Age: {element.age} Billion Years</div>
-                                <div className="p-1 text-light">Surface: {element.surface_area} Million Km2</div>
-                                <div className="p-1 description text-light">{element.description}</div>
-                                <div className="p-1">Galaxy: <a onClick={handleShow} name={element.galaxy__name} id="galaxy" className="milky-way border-bottom p-1 text-light btn">{element.galaxy__name}</a></div>
-                                <div className="p-1">System: <a onClick={handleShow} name={element.system__name} id="system" className="milky-way border-bottom p-1 text-light btn">{element.system__name}</a></div>                            
-                            </div>
-                        </Col>
-                    </Row>                        
-            </Col>         
+    const detailView = (data || []).map((element)=>
+            <FadeIn delay={600}>             
+                <Col className="mt-2 text-light" key={element.id} xs={12}>                    
+                    <Row className="mx-auto">                                                   
+                            <img className="col-xs-12 col-sm-4 col-md-3 col-lg-3 planet-image" src={media + element.image}/>
+                            <Col className="text-start mt-2 p-4 h6" xs={12} sm={8} md={9} lg={9}>                                        
+                                <div className="bg-custom p-2"> 
+                                    <div className="h4 border-bottom border-info text-info">{element.name}: {element.nickname}</div>
+                                    <div className="p-1 text-light">Classification: {element.celestrial__name}</div>
+                                    <div className="p-1 text-light">Age: {element.age} Billion Years</div>
+                                    <div className="p-1 text-light">Surface: {element.surface_area} Million Km2</div>
+                                    <div className="p-1 description text-light">{element.description}</div>
+                                    <div className="p-1">Galaxy: <a onClick={handleShow} name={element.galaxy__name} id="galaxy" className="milky-way border-bottom p-1 text-light btn">{element.galaxy__name}</a></div>
+                                    <div className="p-1">System: <a onClick={handleShow} name={element.system__name} id="system" className="milky-way border-bottom p-1 text-light btn">{element.system__name}</a></div>                            
+                                </div>
+                            </Col>                                                
+                    </Row>                                           
+                </Col>
+            </FadeIn>         
     )
 
     const GalaxyView = (galaxy || []).map((element)=>            
@@ -188,12 +197,12 @@ function Universe(props) {
                     {AsteroidActive ? <div className="text-light btn celesterial-links border-bottom">Asteroids</div> : <div onClick={handleAsteroidActive} className="text-light btn celesterial-links">Asteroids</div>}
                 </Col>
                 <Col xs={3} md={2} onClick={handleChangeView} className="p-2 pt-0 text-end">{planet ? <i class="text-white fas fa-list btn"></i> : <i class="text-white fas fa-th btn"></i>}</Col>
-            </Row>
-            <div className="Planets mt-2">
-                <Row className="m-0 p-2">           
-                    {handlePlanetView()}
-                </Row>            
-            </div>
+            </Row>            
+                <div className="Planets mt-2">                                    
+                    <Row className="m-0 p-2">                                    
+                        {handlePlanetView()}                            
+                    </Row>                                                 
+                </div>           
             <Modal show={show} onHide={handleClose}>                
                 <Modal.Body>
                     {GalaxyView}

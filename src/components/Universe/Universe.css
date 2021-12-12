@@ -28,6 +28,10 @@ input {
     font-size: 16px;
 }
 
+.Planets {
+    transition-timing-function: ease-in !important;
+}
+
 @media screen and (max-width: 576px){
     img {
         width: 75%;
