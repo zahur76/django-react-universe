@@ -7,21 +7,26 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Galaxy',
+            name="Galaxy",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=254)),
-                ('age', models.CharField(max_length=254)),
-                ('description', models.CharField(max_length=254)),
-                ('image', models.ImageField(upload_to='')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=254)),
+                ("age", models.CharField(max_length=254)),
+                ("description", models.CharField(max_length=254)),
+                ("image", models.ImageField(upload_to="")),
             ],
-            options={
-                'verbose_name_plural': 'Galaxy',
-            },
-        ),
+            options={"verbose_name_plural": "Galaxy"},
+        )
     ]

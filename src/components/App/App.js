@@ -22,11 +22,11 @@ function App() {
       <BrowserRouter>
         <Routes className="App">
             <Route path="/" element={<div><Header onSearch={onSearch}/> <Universe searchStatus={search}/></div>} />
-            <Route path="/adminuser" element={<Admin />} />                            
-        </Routes> 
+            <Route path="/adminuser" element={<Admin />} />
+        </Routes>
       </BrowserRouter>
     </div>
-    
+
   );
 }
 

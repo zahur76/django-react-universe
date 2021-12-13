@@ -1,7 +1,7 @@
 from django.db import models
 
-class Galaxy(models.Model):
 
+class Galaxy(models.Model):
     class Meta:
         verbose_name_plural = "Galaxy"
 
@@ -15,7 +15,6 @@ class Galaxy(models.Model):
 
 
 class System(models.Model):
-
     class Meta:
         verbose_name_plural = "System"
 
@@ -29,7 +28,6 @@ class System(models.Model):
 
 
 class CelestrialBody(models.Model):
-
     class Meta:
         verbose_name_plural = "Celestrial Body"
 
@@ -38,20 +36,33 @@ class CelestrialBody(models.Model):
     def __str__(self):
         return self.name
 
-class Entity(models.Model):
 
+class Entity(models.Model):
     class Meta:
         verbose_name_plural = "Entity"
 
     galaxy = models.ForeignKey(
-            'Galaxy', null=False, blank=False, on_delete=models.CASCADE,
-            related_name='galaxy')
+        "Galaxy",
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name="galaxy",
+    )
     system = models.ForeignKey(
-            'System', null=False, blank=False, on_delete=models.CASCADE,
-            related_name='system')
+        "System",
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name="system",
+    )
     celestrial = models.ForeignKey(
-            'CelestrialBody', null=False, blank=False, on_delete=models.CASCADE,
-            related_name='celestrial', default=1)
+        "CelestrialBody",
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name="celestrial",
+        default=1,
+    )
     name = models.CharField(max_length=254)
     nickname = models.CharField(max_length=254)
     constellation = models.CharField(max_length=254, default="cygnus")

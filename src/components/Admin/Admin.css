@@ -41,10 +41,10 @@
 }
 
 @media screen and (max-width: 992px){
-    .update-form {        
+    .update-form {
         width: 60%;
         left: 20%
-    }    
+    }
 }
 
 @media screen and (max-width: 576px){
@@ -56,8 +56,8 @@
         left: 5%;
     }
 
-    .update-form {        
+    .update-form {
         width: 90%;
         left: 5%
-    }    
+    }
 }

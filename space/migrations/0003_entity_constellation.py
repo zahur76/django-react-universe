@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('space', '0002_celestrialbody_entity_system'),
-    ]
+    dependencies = [("space", "0002_celestrialbody_entity_system")]
 
     operations = [
         migrations.AddField(
-            model_name='entity',
-            name='constellation',
-            field=models.CharField(default='cygnus', max_length=254),
-        ),
+            model_name="entity",
+            name="constellation",
+            field=models.CharField(default="cygnus", max_length=254),
+        )
     ]
