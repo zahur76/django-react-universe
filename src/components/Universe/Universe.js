@@ -174,8 +174,8 @@ function Universe(props) {
                                     {element.age==='unknown' ? <div className="p-1 text-light">Age: {element.age} </div> : <div className="p-1 text-light">Age: {element.age} Billion Years</div>}
                                     <div className="p-1 text-light">Surface: {element.surface_area} Million Km2</div>
                                     <div className="p-1 description text-light">{element.description}</div>
-                                    <div className="p-1">Galaxy: <a onClick={handleShow} name={element.galaxy__name} id="galaxy" className="milky-way border-bottom p-1 text-light btn">{element.galaxy__name}</a></div>
-                                    <div className="p-1">System: <a onClick={handleShow} name={element.system__name} id="system" className="milky-way border-bottom p-1 text-light btn">{element.system__name}</a></div>                            
+                                    {element.galaxy__name==="Unknown" ? <div className="p-1">Galaxy: {element.galaxy__name}</div> :<div className="p-1">Galaxy: <a onClick={handleShow} name={element.galaxy__name} id="galaxy" className="milky-way border-bottom p-1 text-light btn">{element.galaxy__name}</a></div>}
+                                    {element.system__name==="Unknown" ? <div className="p-1">System: {element.system__name}</div> : <div className="p-1">System: <a onClick={handleShow} name={element.system__name} id="system" className="milky-way border-bottom p-1 text-light btn">{element.system__name}</a></div>}                          
                                 </div>
                             </Col>                                                
                     </Row>                                           
