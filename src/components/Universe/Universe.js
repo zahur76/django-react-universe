@@ -153,9 +153,9 @@ function Universe(props) {
                             <FadeIn delay={1000}>
                                 <div>                                        
                                     <div className="h4 text-info">{element.name}</div>
-                                    <div className="text-light">{element.age} Billion Years</div>                            
-                                    <div className="text-light">{element.galaxy__name}</div>
-                                    <div className="text-light">{element.system__name}</div>
+                                    {element.age==='unknown' ? <div>Age: {element.age}</div> : <div className="text-light">Age: {element.age} Billion Years</div>}                            
+                                    <div className="text-light">Galaxy: {element.galaxy__name}</div>
+                                    <div className="text-light">System: {element.system__name}</div>
                                 </div>
                             </FadeIn>                    
                     </Col>                 
