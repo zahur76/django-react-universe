@@ -1,6 +1,6 @@
 # The Universe
 
-Project making use of Django backend and React Frontend to show planets.
+Project making use of Django for backend and React for Frontend to display planets.
 
 ## Features
 
@@ -11,3 +11,5 @@ Searchbar with activation button.
 Login Feature for admin functionality.
 
 Admin page to add or delete planets.
+
+
