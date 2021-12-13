@@ -32,6 +32,24 @@ input {
     transition-timing-function: ease-in !important;
 }
 
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.603);
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.fa-arrow-up {
+    position: relative;
+    top: -10px;
+    right: 8px;
+}
+
 @media screen and (max-width: 576px){
     img {
         width: 75%;
@@ -44,5 +62,10 @@ input {
     .celesterial-links {
         font-size: 12px;
         padding: 2px;
+    }
+
+    .fa-arrow-up {
+        top: -12px;
+        right: 7px;
     }
 }

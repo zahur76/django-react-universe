@@ -138,6 +138,13 @@ function Universe(props) {
         {planet ? planetView(false) : planetView(true)}
     }
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behaviour: 'smooth'
+        })
+    }
+
     const handlePlanetView = () => {
         if(planet){
             return compactView
@@ -209,11 +216,12 @@ function Universe(props) {
                 </Col>
                 <Col xs={3} md={2} onClick={handleChangeView} className="p-2 pt-0 text-end">{planet ? <i class="text-white fas fa-list btn"></i> : <i class="text-white fas fa-th btn"></i>}</Col>
             </Row>
-                <div className="Planets mt-2">
-                    <Row className="m-0 p-2">
-                        {handlePlanetView()}
-                    </Row>
-                </div>
+            <div className="Planets mt-2">
+                <Row className="m-0 p-2">
+                    {handlePlanetView()}
+                </Row>
+            </div>
+            <Col onClick={scrollToTop} xs={12} ><div className="btn scroll-top text-light text-end"><i class="fas fa-arrow-up"></i></div></Col>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Body>
                     {GalaxyView}
